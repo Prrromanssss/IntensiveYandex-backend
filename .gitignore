@@ -1,0 +1,11 @@
+# Enviroments
+.venv
+venv/
+venv.bak/
+
+# VSCode
+.vscode/
+
+# Django
+*.pyc
+*__pycache__
