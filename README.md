@@ -7,7 +7,7 @@
 Для его __запуска__ нам необходимо:
 * склонировать проект из гитхаба
 ```commandline
-git clone https://github.com/Prrromanssss/YandexIntensive_backend.git
+git clone https://github.com/Prrromanssss/LyceumYandex_django.git
 ```
 * установить все необходимые зависимости
 ```commandline
