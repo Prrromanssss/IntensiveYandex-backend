@@ -10,13 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+
+import os
 from pathlib import Path
-from dotenv import dotenv_values
 
+from dotenv import load_dotenv
 
-prod_config = dotenv_values('prod.env')
-dev_config = dotenv_values('dev.env')
-
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,26 +26,36 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = dev_config['SECRET_KEY']
+if os.environ.get('SECRET_KEY') is not None:
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+else:
+    SECRET_KEY = 'django-insecure-cc6y^mb^1sqxow%ra4' \
+                 '-&-4ehzycqwosn+=$78#zg6+bov0)*^v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = dev_config['DEBUG']
+if os.environ.get('DEBUG') is not None:
+    DEBUG = os.environ.get('DEBUG')
+else:
+    DEBUG = True
 
-ALLOWED_HOSTS = dev_config['ALLOWED_HOSTS']
+if os.environ.get('ALLOWED_HOSTS'):
+    ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
+else:
+    ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'about.apps.AboutConfig',
-    'catalog.apps.CatalogConfig',
-    'homepage.apps.HomepageConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'homepage.apps.HomepageConfig',
+    'catalog.apps.CatalogConfig',
+    'about.apps.AboutConfig',
 ]
 
 MIDDLEWARE = [

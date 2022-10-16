@@ -5,9 +5,11 @@ venv/
 env/
 venv.bak/
 env.bak/
+.idea/
 
 # VSCode
 .vscode/
+
 
 # Django
 *.pyc

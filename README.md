@@ -1,6 +1,8 @@
 # Домашние работы по Django
 
 
+## ![flake 8 test]((https://github.com/Prrromanssss/LyceumYandex_django/actions/workflows/python-package.yml/badge.svg)
+
 Данный проект является репозиторием для домашних работ по интенсивам по Django от Академии Яндекса.
 
 ***
@@ -13,14 +15,9 @@ git clone https://github.com/Prrromanssss/LyceumYandex_django.git
 ```commandline
 pip install -r requirements.txt
 ```
-* перед тем как поднять сервер, мы должны сформировать файл '.env' с переменнными окружения.
- Его структура представлена в файле 'env_example.txt'. Если нам необходимо, чтобы проект запускался в dev-режиме,
- то создаем файл 'dev.env', куда записываем секретный ключ и выставляем DEBUG = True,
- иначе нам необходим файл 'prod.env', где мы выставим новый ключ и DEBUG = False, не забудьте в настройках
- выбрать тот '.env', который будете использовать
+* сформировать файл '.env' с перемеными окружения. Его структура представлена в файле 'env_example.txt'
 
-* после успешной установки файла '.env'в наше окружение поднимем сервер.
-Для поднятия сервера используется файл manage.py, давайте запустим его
+* поднять сервер
 ```commandline
 python lyceum/manage.py runserver
 ```
