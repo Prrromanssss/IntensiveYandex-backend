@@ -31,17 +31,13 @@ if os.environ.get('SECRET_KEY') is not None:
 else:
     SECRET_KEY = 'django-insecure-cc6y^mb^1sqxow%ra4' \
                  '-&-4ehzycqwosn+=$78#zg6+bov0)*^v'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('DEBUG') is not None:
     DEBUG = os.environ.get('DEBUG')
 else:
     DEBUG = True
 
-if os.environ.get('ALLOWED_HOSTS'):
-    ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
-else:
-    ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
 
 
 # Application definition
