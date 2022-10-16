@@ -1,8 +1,6 @@
 # Домашние работы по Django
 
 
-## ![flake 8 test]((https://github.com/Prrromanssss/LyceumYandex_django/actions/workflows/python-package.yml/badge.svg)
-
 Данный проект является репозиторием для домашних работ по интенсивам по Django от Академии Яндекса.
 
 ***
