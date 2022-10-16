@@ -35,5 +35,4 @@ pip install -r requirements.txt
 ```commandline
 python lyceum/manage.py runserver
 ```
-Итак, мы запустили наш сайт на локальном хосте, на 8000 порте(этот порт стоит по умолчанию при запуске сервера)
 ***
