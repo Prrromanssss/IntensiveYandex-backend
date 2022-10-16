@@ -1,3 +1,2 @@
 SECRET_KEY = ''
 DEBUG = bool()
-ALLOWED_HOSTS = []
