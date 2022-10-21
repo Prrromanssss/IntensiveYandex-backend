@@ -13,7 +13,7 @@
 git clone https://github.com/Prrromanssss/LyceumYandex_django.git
 ```
 * поставить виртуальное окружение
-### Mac OS
+### Mac OS / Linux
 ```commandline
 python -m venv venv
 source venv/bin/activate
