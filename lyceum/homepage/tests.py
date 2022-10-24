@@ -2,6 +2,6 @@ from django.test import Client, TestCase
 
 
 class StaticUrlTests(TestCase):
-    def test_homepage_endpoint(self):
+    def test_homepage_endpoints(self):
         response = Client().get('/')
         self.assertEqual(response.status_code, 200)
