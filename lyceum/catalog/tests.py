@@ -20,7 +20,7 @@ class DynamicUrlTests(TestCase):
                 self.assertEqual(response.status_code, 404)
 
         for item in endpoints[200]:
-            with self.subTest(f'Succes Urls - /catalog/{item}/'):
+            with self.subTest(f'Success Urls - /catalog/{item}/'):
                 response = Client().get(f'/catalog/{item}/')
                 self.assertEqual(response.status_code, 200)
 
