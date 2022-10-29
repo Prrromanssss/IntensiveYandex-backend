@@ -42,10 +42,9 @@ class Item(CommonFieldsNameIsPublished):
                                  the category of the item''',
                                  )
     tags = models.ManyToManyField('Tag',
-                                  on_delete=models.CASCADE,
                                   verbose_name='Тэг',
                                   help_text='''This attribute keeps
-                                  the tags that belong to item'''
+                                  the tags that belong to item''',
                                   )
 
 
