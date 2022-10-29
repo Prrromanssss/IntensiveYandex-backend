@@ -21,7 +21,7 @@ class CommonFieldsNameIsPublished(models.Model):
         return f'{self.__class__.name}({self.name})'
 
 
-class CommonFieldsSlug(models.Model):
+class CommonFieldsSlugNameIsPublished(CommonFieldsNameIsPublished):
     slug = models.SlugField(unique=True, max_length=200,
                             verbose_name='Адрес',
                             help_text='''This attribute keeps
@@ -48,11 +48,11 @@ class Item(CommonFieldsNameIsPublished):
                                   )
 
 
-class Tag(CommonFieldsNameIsPublished, CommonFieldsSlug):
+class Tag(CommonFieldsSlugNameIsPublished):
     pass
 
 
-class Category(CommonFieldsNameIsPublished, CommonFieldsSlug):
+class Category(CommonFieldsSlugNameIsPublished):
     weight = models.PositiveSmallIntegerField(default=100,
                                               validators=[MinValValidator(1)],
                                               verbose_name='Вес',
