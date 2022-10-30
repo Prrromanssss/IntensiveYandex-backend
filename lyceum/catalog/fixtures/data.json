@@ -1,0 +1,124 @@
+[
+    {
+        "model": "catalog.item",
+        "id": 1,
+        "fields": {
+            "name": "Грузовик",
+            "is_published": true,
+            "text": "Этот грузовик ездит превосходно",
+            "category": 2,
+            "tags": [4, 5]
+                   }
+    },
+    {
+        "model": "catalog.item",
+        "id": 2,
+        "fields": {
+            "name": "Коньки",
+            "is_published": true,
+            "text": "Эти коньки выглядят роскошно",
+            "category": 1,
+            "tags": [2, 3, 4]
+                   }
+    },
+    {
+        "model": "catalog.item",
+        "id": 3,
+        "fields": {
+            "name": "Снегоуборочная машина",
+            "is_published": true,
+            "text": "Снегоуборочная машина превосходно справляется со своими задачами",
+            "category": 2,
+            "tags": [3, 4, 5]
+                   }
+    },
+    {
+        "model": "catalog.item",
+        "id": 4,
+        "fields": {
+            "name": "Лыжи",
+            "is_published": true,
+            "text": "Эти лыжи роскошно подходят под белые штаны",
+            "category": 1,
+            "tags": [2, 3, 4]
+                   }
+    },
+    {
+        "model": "catalog.item",
+        "id": 5,
+        "fields": {
+            "name": "Боксерские перчатки",
+            "is_published": false,
+            "text": "Только лучшие, превосходно боксирующие спортсмены носили эти перчатки ",
+            "category": 1,
+            "tags": [1, 2]
+                   }
+    },
+
+    {
+        "model": "catalog.tag",
+        "id": 1,
+        "fields": {
+            "name": "травма",
+            "is_published": true,
+            "slug": "injury-tag"
+                  }
+    },
+    {
+        "model": "catalog.tag",
+        "id": 2,
+        "fields": {
+            "name": "спорт",
+            "is_published": true,
+            "slug": "sport-tag"
+                  }
+    },
+    {
+        "model": "catalog.tag",
+        "id": 3,
+        "fields": {
+            "name": "лёд",
+            "is_published": true,
+            "slug": "ice-tag"
+                  }
+    },
+    {
+        "model": "catalog.tag",
+        "id": 4,
+        "fields": {
+            "name": "передвижение",
+            "is_published": true,
+            "slug": "movement-tag"
+                  }
+    },
+    {
+        "model": "catalog.tag",
+        "id": 5,
+        "fields": {
+            "name": "машина",
+            "is_published": true,
+            "slug": "car-tag"
+                  }
+    },
+
+    {
+        "model": "catalog.category",
+        "id": 1,
+        "fields": {
+            "name": "Спортивное оборудование",
+            "is_published": true,
+            "slug": "sport-inventory-tag",
+            "weight": 6
+                  }
+    },
+    {
+        "model": "catalog.category",
+        "id": 2,
+        "fields": {
+            "name": "Транспорт",
+            "is_published": true,
+            "slug": "transport-category",
+            "weight": 3
+                  }
+    }
+]

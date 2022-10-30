@@ -1,77 +1,53 @@
 from django.db import models
-from django.core.validators import MinValueValidator as MinValValidator
+from django.core.validators import MinLengthValidator as MinLenValidator
 
 from .validators import validate_amazing
-
-
-class CommonFieldsNameIsPublished(models.Model):
-    name = models.CharField(max_length=150,
-                            verbose_name='Название',
-                            help_text='''This attribute keeps
-                            the name of the entry''',
-                            )
-    is_published = models.BooleanField(default=True,
-                                       verbose_name='Опубликовано',
-                                       help_text='''This attribute keeps
-                                       information whether the entry
-                                       has been published''',
-                                       )
-
-    def __str__(self):
-        return f'{self.__class__.name}({self.name})'
-
-
-class CommonFieldsSlugNameIsPublished(CommonFieldsNameIsPublished):
-    slug = models.SlugField(unique=True, max_length=200,
-                            verbose_name='Адрес',
-                            help_text='''This attribute keeps
-                            the url of the entry''',
-                            )
+from core.models import CommonFieldsNameIsPublished
+from core.models import CommonFieldsSlugNameIsPublished
 
 
 class Item(CommonFieldsNameIsPublished):
-    text = models.TextField(validators=[validate_amazing, ],
-                            verbose_name='Описание',
-                            help_text='''This attribute keeps
-                            the description of the item''',
-                            )
     category = models.ForeignKey('Category',
                                  on_delete=models.CASCADE,
                                  verbose_name='Категория',
-                                 help_text='''This attribute keeps
-                                 the category of the item''',
+                                 help_text='''Выберите категорию''',
+                                 related_name='items',
                                  )
     tags = models.ManyToManyField('Tag',
                                   verbose_name='Тэг',
-                                  help_text='''This attribute keeps
-                                  the tags that belong to item''',
+                                  help_text='''Удерживайте "Control"
+                                   (или "Command" на Mac),
+                                   чтобы выбрать несколько значений ''',
+                                  related_name='items',
                                   )
+    text = models.TextField(validators=[validate_amazing('превосходно',
+                                                     'роскошно'),
+                                        MinLenValidator(2)],
+                            verbose_name='Описание',
+                            help_text='''Описание должно быть больше, чем
+                             из двух символов и содержать слова "роскошно,
+                             превосходно"''',
+                            )
+
+    class Meta:
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
 
 
 class Tag(CommonFieldsSlugNameIsPublished):
-    pass
+    class Meta:
+        verbose_name = 'Тэг'
+        verbose_name_plural = 'Тэги'
 
 
 class Category(CommonFieldsSlugNameIsPublished):
     weight = models.PositiveSmallIntegerField(default=100,
-                                              validators=[MinValValidator(1)],
+                                              validators=[MinLenValidator(1)],
                                               verbose_name='Вес',
-                                              help_text='''This attribute keeps
-                                              the weight of the category''',
+                                              help_text='''Какой-то вес, я хз,
+                                               что это''',
                                               )
 
-
-'''
-Виды удалений:
-    SET_DEFAULT, DO_NOTHING, RESTRICT, PROTECT, CASCADE, SET_NULL
-Виды отношений таблиц:
-    одно к одному
-    одно ко многим
-    многие ко многим
-'''
-
-
-'''
-CI/CD
-setup.cfg
-per-file-ignores = */migrations/, *settings.py:E501'''
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'

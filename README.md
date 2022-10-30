@@ -1,18 +1,18 @@
-# Домашние работы по Django
+# Django homework
 
 
 ## ![flake8 test](https://github.com/Prrromanssss/LyceumYandex_django/actions/workflows/python-package.yml/badge.svg)
 
 
-Данный проект является репозиторием для домашних работ по интенсивам по Django от Академии Яндекса.
+This project is a repository for Django intensive homework from the Yandex Academy.
 
 ***
-Для его __запуска__ нам необходимо:
-* склонировать проект из гитхаба
+To __start__ it we need:
+* clone project from GitHub
 ```commandline
 git clone https://github.com/Prrromanssss/LyceumYandex_django.git
 ```
-* поставить виртуальное окружение
+* set virtual environment
 ### Mac OS / Linux
 ```commandline
 python -m venv venv
@@ -25,14 +25,28 @@ python -m venv venv
 ```
 
 
-* установить все необходимые зависимости
+* install all requirements
 ```commandline
 pip install -r requirements.txt
 ```
-* сформировать файл '.env' с перемеными окружения. Его структура представлена в файле 'env_example.txt'
+* generate a '.env' file with environment variables. Its structure is presented in the file 'env_example.txt'
 
-* поднять сервер
+* migrate our databases
+```commandline
+python lyceum/manage.py migrate
+```
+
+* load test data to databases
+```commandline
+python lyceum/manage.py loaddata data.json
+```
+
+* run server
 ```commandline
 python lyceum/manage.py runserver
 ```
+
+* you can see models in administration of Django. Go over 127.0.0.1:8000/admin
+Login: admin
+Password: 12345
 ***
