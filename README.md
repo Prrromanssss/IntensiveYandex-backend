@@ -47,6 +47,8 @@ python lyceum/manage.py runserver
 ```
 
 * you can see models in administration of Django. Go over 127.0.0.1:8000/admin
+
 Login: admin
+
 Password: 12345
 ***
