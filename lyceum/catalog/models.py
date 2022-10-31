@@ -1,5 +1,7 @@
+from enum import unique
+
 from core.models import IsPublishedBaseModel, IsPublishedSlugBaseModel
-from django.core.validators import MinValueValidator as MinValValidator
+from django.core.validators import MinValueValidator
 from django.db import models
 
 from .validators import validate_amazing
@@ -8,25 +10,24 @@ from .validators import validate_amazing
 class Item(IsPublishedBaseModel):
     name = models.CharField('Название',
                             max_length=150,
-                            help_text='максимум 150 символов',
+                            help_text='Максимум 150 символов',
                             )
     category = models.ForeignKey(
         'Category',
-        on_delete=models.CASCADE,
         verbose_name='Категория',
+        on_delete=models.CASCADE,
         help_text='Выберите категорию',
     )
     tags = models.ManyToManyField(
         'Tag',
         verbose_name='Тег',
-        help_text='Выберите теги',
     )
     text = models.TextField(
         'Описание',
+        help_text='Описание должно содержать слова "роскошно" и "превосходно"',
         validators=[
             validate_amazing('превосходно', 'роскошно'),
         ],
-        help_text='Описание должно содержать слова "роскошно" и "превосходно"',
     )
 
     class Meta:
@@ -38,7 +39,8 @@ class Item(IsPublishedBaseModel):
 class Tag(IsPublishedSlugBaseModel):
     name = models.CharField('Название',
                             max_length=150,
-                            help_text='максимум 150 символов',
+                            unique=True,
+                            help_text='Максимум 150 символов',
                             )
 
     class Meta:
@@ -49,13 +51,14 @@ class Tag(IsPublishedSlugBaseModel):
 class Category(IsPublishedSlugBaseModel):
     name = models.CharField('Название',
                             max_length=150,
-                            help_text='максимум 150 символов',
+                            unique=True,
+                            help_text='Максимум 150 символов',
                             )
     weight = models.PositiveSmallIntegerField(
         'Вес',
         default=100,
-        validators=[MinValValidator(1)],
         help_text='Максимум 32767',
+        validators=[MinValueValidator(1)],
     )
 
     class Meta:

@@ -82,14 +82,16 @@ class ModelTests(TestCase):
             'роскошно в нем все',
             'это роскошно и превосходно'
         ]
-        for text in text_endpoints:
-            self.item = Item(
-                name='тестовый товар', category=self.category,
-                text=text,
-            )
-            self.item.full_clean()
-            self.item.save()
-            self.item.tags.add(self.tag)
+        for ind, text in enumerate(text_endpoints, start=1):
+            with self.subTest(f'The model Item with such text must be created'
+                              f' - "{text}"'):
+                self.item = Item(
+                    name='тестовый товар', category=self.category,
+                    text=text,
+                )
+                self.item.full_clean()
+                self.item.save()
+                self.item.tags.add(self.tag)
 
-        self.assertEqual(Item.objects.count(),
-                         item_count + len(text_endpoints))
+                self.assertEqual(Item.objects.count(),
+                                 item_count + ind)

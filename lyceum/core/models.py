@@ -14,10 +14,13 @@ class IsPublishedBaseModel(models.Model):
 
 
 class IsPublishedSlugBaseModel(IsPublishedBaseModel):
-    slug = models.SlugField('Slug', unique=True, max_length=200,
-                            help_text='Только slug-значения,'
-                            ' максимум 200 символов',
-                            )
+    slug = models.SlugField(
+        'Slug',
+        max_length=200,
+        unique=True,
+        help_text='Только slug-значения,'
+        ' максимум 200 символов',
+    )
 
     class Meta:
         abstract = True
