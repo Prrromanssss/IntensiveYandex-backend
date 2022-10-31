@@ -1,52 +1,62 @@
+from core.models import IsPublishedBaseModel, IsPublishedSlugBaseModel
+from django.core.validators import MinValueValidator as MinValValidator
 from django.db import models
-from django.core.validators import MinLengthValidator as MinLenValidator
 
 from .validators import validate_amazing
-from core.models import CommonFieldsNameIsPublished
-from core.models import CommonFieldsSlugNameIsPublished
 
 
-class Item(CommonFieldsNameIsPublished):
-    category = models.ForeignKey('Category',
-                                 on_delete=models.CASCADE,
-                                 verbose_name='Категория',
-                                 help_text='''Выберите категорию''',
-                                 related_name='items',
-                                 )
-    tags = models.ManyToManyField('Tag',
-                                  verbose_name='Тэг',
-                                  help_text='''Удерживайте "Control"
-                                   (или "Command" на Mac),
-                                   чтобы выбрать несколько значений ''',
-                                  related_name='items',
-                                  )
-    text = models.TextField(validators=[validate_amazing('превосходно',
-                                                     'роскошно'),
-                                        MinLenValidator(2)],
-                            verbose_name='Описание',
-                            help_text='''Описание должно быть больше, чем
-                             из двух символов и содержать слова "роскошно,
-                             превосходно"''',
+class Item(IsPublishedBaseModel):
+    name = models.CharField('Название',
+                            max_length=150,
+                            help_text='максимум 150 символов',
                             )
+    category = models.ForeignKey(
+        'Category',
+        on_delete=models.CASCADE,
+        verbose_name='Категория',
+        help_text='Выберите категорию',
+    )
+    tags = models.ManyToManyField(
+        'Tag',
+        verbose_name='Тег',
+        help_text='Выберите теги',
+    )
+    text = models.TextField(
+        'Описание',
+        validators=[
+            validate_amazing('превосходно', 'роскошно'),
+        ],
+        help_text='Описание должно содержать слова "роскошно" и "превосходно"',
+    )
 
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
+        default_related_name = 'items'
 
 
-class Tag(CommonFieldsSlugNameIsPublished):
+class Tag(IsPublishedSlugBaseModel):
+    name = models.CharField('Название',
+                            max_length=150,
+                            help_text='максимум 150 символов',
+                            )
+
     class Meta:
-        verbose_name = 'Тэг'
-        verbose_name_plural = 'Тэги'
+        verbose_name = 'Тег'
+        verbose_name_plural = 'Теги'
 
 
-class Category(CommonFieldsSlugNameIsPublished):
-    weight = models.PositiveSmallIntegerField(default=100,
-                                              validators=[MinLenValidator(1)],
-                                              verbose_name='Вес',
-                                              help_text='''Какой-то вес, я хз,
-                                               что это''',
-                                              )
+class Category(IsPublishedSlugBaseModel):
+    name = models.CharField('Название',
+                            max_length=150,
+                            help_text='максимум 150 символов',
+                            )
+    weight = models.PositiveSmallIntegerField(
+        'Вес',
+        default=100,
+        validators=[MinValValidator(1)],
+        help_text='Максимум 32767',
+    )
 
     class Meta:
         verbose_name = 'Категория'
