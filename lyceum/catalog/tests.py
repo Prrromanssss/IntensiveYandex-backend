@@ -85,7 +85,9 @@ class ModelTests(TestCase):
         text_endpoints = [
             'превосходно в нем все',
             'роскошно в нем все',
-            'это роскошно и превосходно',
+            'это роскошно,превосходно',
+            'Это роскошно!',
+            'Это превосходно?',
         ]
         for ind, text in enumerate(text_endpoints, start=1):
             with self.subTest(f'The model Item with such text must be created'
