@@ -1,5 +1,4 @@
 from core.models import IsPublishedBaseModel, IsPublishedSlugBaseModel
-from django.core.validators import MinValueValidator
 from django.db import models
 
 from .validators import validate_amazing
@@ -22,7 +21,7 @@ class Item(IsPublishedBaseModel):
     )
     text = models.TextField(
         'описание',
-        help_text='Описание должно содержать слова "роскошно" и "превосходно".',
+        help_text='Описание должно содержать слова "роскошно" и "превосходно"',
         validators=[
             validate_amazing('превосходно', 'роскошно'),
         ],
@@ -56,7 +55,6 @@ class Category(IsPublishedSlugBaseModel):
         'вес',
         default=100,
         help_text='Максимум 32767',
-        validators=[MinValueValidator(1)],
     )
 
     class Meta:
