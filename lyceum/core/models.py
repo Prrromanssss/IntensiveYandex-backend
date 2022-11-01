@@ -6,11 +6,11 @@ class IsPublishedBaseModel(models.Model):
                                        default=True,
                                        )
 
-    class Meta:
-        abstract = True
-
     def __str__(self):
         return f'{self.name}'
+
+    class Meta:
+        abstract = True
 
 
 class IsPublishedSlugBaseModel(IsPublishedBaseModel):
