@@ -52,8 +52,7 @@ Login: admin
 
 Password: 12345
 
-
-
+***
 
 ## ER-diagram
 ![Image of the ER-diagram](https://github.com/Prrromanssss/LyceumYandex_django/raw/main/media/ER-diagram.png)
