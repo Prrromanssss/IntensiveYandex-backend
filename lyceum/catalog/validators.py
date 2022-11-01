@@ -9,10 +9,11 @@ def validate_amazing(*args):
     def validator(value):
         must_words = set(args)
 
+        cleaned_text = value
         for sign in punctuation:
-            value = value.replace(sign, ' ')
+            cleaned_text = cleaned_text.replace(sign, ' ')
 
-        cleaned_text = set(value.lower().split())
+        cleaned_text = set(cleaned_text.lower().split())
 
         difference = must_words - cleaned_text
 
