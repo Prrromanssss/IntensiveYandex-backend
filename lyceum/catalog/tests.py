@@ -66,27 +66,33 @@ class ModelTests(TestCase):
 
     def test_without_needed_words(self):
         item_count = Item.objects.count()
-        with self.assertRaises(ValidationError):
-            self.item = Item(name='товар номер 1', category=self.category,
-                             text='какая-то бессмыслица')
-            self.item.full_clean()
-            self.item.save()
-            self.item.tags.add(self.tag)
+        text_endpoints = ['какая-то бессмыслица',
+                          'нероскошно',
+                          'превосходность',
+                          ]
+        for text in text_endpoints:
+            with self.assertRaises(ValidationError):
+                self.item = Item(name='товар номер 1', category=self.category,
+                                 text=text)
+                self.item.full_clean()
+                self.item.save()
+                self.item.tags.add(self.tag)
 
-        self.assertEqual(Item.objects.count(), item_count)
+            self.assertEqual(Item.objects.count(), item_count)
 
     def test_with_needed_words(self):
         item_count = Item.objects.count()
         text_endpoints = [
             'превосходно в нем все',
             'роскошно в нем все',
-            'это роскошно и превосходно'
+            'это роскошно и превосходно',
         ]
         for ind, text in enumerate(text_endpoints, start=1):
             with self.subTest(f'The model Item with such text must be created'
                               f' - "{text}"'):
                 self.item = Item(
-                    name='тестовый товар', category=self.category,
+                    name='тестовый товар',
+                    category=self.category,
                     text=text,
                 )
                 self.item.full_clean()
