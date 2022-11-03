@@ -70,14 +70,14 @@ python lyceum/manage.py loaddata data.json
 ### 7. Authorizing admin user
 
 #### The first way
-7.1.1 If you have copied example database you have already authorizing admin user
+7.1.1 If you have copied example database, you have already authorizing admin user
 ```commandline
 Username: admin
 Password: 12345
 ```
 
 #### The second way
-7.1.2 If you have loaded data from the fixtures run this command to authorize admin user
+7.1.2 If you have loaded data from the fixtures, run this command to authorize admin user
 ```commandline
 python lyceum/manage.py createsuperuser
 ```
