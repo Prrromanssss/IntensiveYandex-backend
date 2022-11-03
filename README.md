@@ -1,7 +1,7 @@
 # Django homework
 
 
-## ![flake8 test](https://github.com/Prrromanssss/LyceumYandex_django/actions/workflows/python-package.yml/badge.svg)
+![flake8 test](https://github.com/Prrromanssss/LyceumYandex_django/actions/workflows/python-package.yml/badge.svg)
 
 
 
