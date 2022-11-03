@@ -62,7 +62,7 @@ python lyceum/manage.py migrate
 6.2.1 Copy this database to 'lyceum/db.sqlite3'
 
 #### The second way
-6.1.2 To load data from the fixtures run this command
+6.1.2 To load data for database from the fixtures run this command
 ```commandline
 python lyceum/manage.py loaddata data.json
 ```
