@@ -57,7 +57,7 @@ python lyceum/manage.py migrate
 ### 6. Database setup
 
 #### The first way
-6.1.1 The example of the database you can see in the 'examples/example_db.sqlite3' file
+6.1.1 The example of the database you can see in the 'examples/db_example.sqlite3' file
 6.2.1 Copy this database to 'lyceum/db.sqlite3'
 
 #### The second way
