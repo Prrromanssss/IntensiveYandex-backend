@@ -7,32 +7,52 @@
 This project is a repository for Django intensive homework from the Yandex Academy.
 
 ***
-To __start__ it we need:
-* clone project from GitHub
+
+### Deployment instructions
+
+## 1 Cloning project from GitHub
+
+1.1 Run this command
 ```commandline
 git clone https://github.com/Prrromanssss/LyceumYandex_django.git
 ```
-* set virtual environment
-### Mac OS / Linux
+
+## 2 Creation and activation venv
+
+2.1 First of all, from root directory run this command
 ```commandline
 python -m venv venv
+```
+2.2 Then run this command to activate venv
+#### Mac OS / Linux
+```commandline
 source venv/bin/activate
 ```
-### Windows
+#### Windows
 ```commandline
-python -m venv venv
 .\venv\Scripts\activate
 ```
 
+## 3 Installation all requirements
 
-* install all requirements
+3.3 Run rhis command 
 ```commandline
 pip install -r requirements.txt
 ```
-* generate a '.env' file with environment variables. Its structure is presented in the file 'env_example.txt'
 
-* migrate our databases
-```commandline
+## 4 Generete file with virtual environment variables (.env)
+
+4.1 Generate file '.env' in root directory with structure specified in the 'examples/env_example.txt' file
+
+## 5 Making migrations
+
+5.1 To make migrations run this command
+
+```python
+python lyceum/manage.py makemigrations
+```
+5.2 To apply your migrations run this command
+```python
 python lyceum/manage.py migrate
 ```
 
