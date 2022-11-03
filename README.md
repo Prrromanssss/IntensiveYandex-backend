@@ -33,12 +33,12 @@ source venv/bin/activate
 
 ### 3. Installation all requirements
 
-3.3 Run rhis command 
+3.3 Run this command 
 ```commandline
 pip install -r requirements.txt
 ```
 
-### 4. Generete file with virtual environment variables (.env)
+### 4. Generate file with virtual environment variables (.env)
 
 4.1 Generate file '.env' in root directory with structure specified in the 'examples/env_example.txt' file
 
