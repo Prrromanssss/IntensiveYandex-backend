@@ -7,7 +7,6 @@
 
 ## Deployment instructions
 
-***
 
 ### 1. Cloning project from GitHub
 
