@@ -65,33 +65,46 @@ class ModelTests(TestCase):
         )
 
     def test_without_needed_words(self):
-        item_count = Item.objects.count()
-        text_endpoints = ['какая-то бессмыслица',
-                          'нероскошно',
-                          'превосходность',
-                          ]
+        text_endpoints = [
+            'какая-то бессмыслица',
+            'нероскошно',
+            'превосходность',
+        ]
         for text in text_endpoints:
-            with self.assertRaises(ValidationError):
-                self.item = Item(name='товар номер 1', category=self.category,
-                                 text=text)
-                self.item.full_clean()
-                self.item.save()
-                self.item.tags.add(self.tag)
+            item_count = Item.objects.count()
+            with self.subTest(
+                 f'This word must fail validation'
+                 f' - "{text}"'
+                 ):
+                with self.assertRaises(ValidationError):
 
-            self.assertEqual(Item.objects.count(), item_count)
+                    self.item = Item(
+                        name='товар номер 1',
+                        category=self.category,
+                        text=text
+                    )
+                    self.item.full_clean()
+                    self.item.save()
+                    self.item.tags.add(self.tag)
+
+                self.assertEqual(Item.objects.count(), item_count)
 
     def test_with_needed_words(self):
-        item_count = Item.objects.count()
         text_endpoints = [
             'превосходно в нем все',
             'роскошно в нем все',
             'это роскошно,превосходно',
             'Это роскошно!',
             'Это превосходно?',
+
         ]
-        for ind, text in enumerate(text_endpoints, start=1):
-            with self.subTest(f'The model Item with such text must be created'
-                              f' - "{text}"'):
+        for text in text_endpoints:
+            item_count = Item.objects.count()
+            with self.subTest(
+                 f'The model Item with such text must be created'
+                 f' - "{text}"'
+                 ):
+
                 self.item = Item(
                     name='тестовый товар',
                     category=self.category,
@@ -100,6 +113,4 @@ class ModelTests(TestCase):
                 self.item.full_clean()
                 self.item.save()
                 self.item.tags.add(self.tag)
-
-                self.assertEqual(Item.objects.count(),
-                                 item_count + ind)
+                self.assertEqual(Item.objects.count(), item_count + 1)

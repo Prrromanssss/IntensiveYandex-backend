@@ -5,10 +5,11 @@ from .validators import validate_amazing
 
 
 class Item(IsPublishedBaseModel):
-    name = models.CharField('название',
-                            max_length=150,
-                            help_text='Максимум 150 символов',
-                            )
+    name = models.CharField(
+        'название',
+        max_length=150,
+        help_text='Максимум 150 символов',
+    )
     category = models.ForeignKey(
         'Category',
         verbose_name='категория',
@@ -34,11 +35,12 @@ class Item(IsPublishedBaseModel):
 
 
 class Tag(IsPublishedSlugBaseModel):
-    name = models.CharField('название',
-                            max_length=150,
-                            unique=True,
-                            help_text='Максимум 150 символов',
-                            )
+    name = models.CharField(
+        'название',
+        max_length=150,
+        unique=True,
+        help_text='Максимум 150 символов',
+    )
 
     class Meta:
         verbose_name = 'тег'
@@ -46,11 +48,12 @@ class Tag(IsPublishedSlugBaseModel):
 
 
 class Category(IsPublishedSlugBaseModel):
-    name = models.CharField('название',
-                            max_length=150,
-                            unique=True,
-                            help_text='Максимум 150 символов',
-                            )
+    name = models.CharField(
+        'название',
+        max_length=150,
+        unique=True,
+        help_text='Максимум 150 символов',
+    )
     weight = models.PositiveSmallIntegerField(
         'вес',
         default=100,

@@ -2,9 +2,10 @@ from django.db import models
 
 
 class IsPublishedBaseModel(models.Model):
-    is_published = models.BooleanField('опубликовано',
-                                       default=True,
-                                       )
+    is_published = models.BooleanField(
+        'опубликовано',
+        default=True,
+    )
 
     class Meta:
         abstract = True
