@@ -48,7 +48,6 @@ class ImageBaseModel(models.Model):
 
     image_tmb.short_description = 'превью'
     image_tmb.allow_tags = True
-    image_tmb.verbose_name = 'hgfjj'
 
     class Meta:
         abstract = True
