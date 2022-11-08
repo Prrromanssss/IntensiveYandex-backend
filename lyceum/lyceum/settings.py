@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'homepage.apps.HomepageConfig',
     'catalog.apps.CatalogConfig',
     'about.apps.AboutConfig',
+    'sorl.thumbnail',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +121,6 @@ STATICFILES_DIRS = [
 STATIC_ROOT = BASE_DIR / 'static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'

@@ -1,39 +1,108 @@
 <header class="p-3 bg-dark text-white">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-        </a>
+  <div class="container">
+    <div
+      class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+    >
+      <a
+        href="/"
+        class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
+      >
+        <svg
+          class="bi me-2"
+          width="40"
+          height="32"
+          role="img"
+          aria-label="Bootstrap"
+        >
+          <use xlink:href="#bootstrap"></use>
+        </svg>
+      </a>
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+      <ul
+        class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+      >
+        {% with request.resolver_match.view_name as view_name %}
+          {% if view_name == 'homepage:home' %}
+        <li>
+          <a
+            href="{% url 'homepage:home' %}"
+            class="nav-link px-2 text-secondary"
+            >На главную</a
+          >
+        </li>
+        <li>
+          <a
+            href="{% url 'catalog:item_list' %}"
+            class="nav-link px-2 text-white"
+            >Список товаров</a
+          >
+        </li>
+        <li>
+          <a
+            href="{% url 'about:description' %}"
+            class="nav-link px-2 text-white"
+            >О проекте</a
+          >
+        </li>
+        {% elif view_name == 'about:description' %}
+        <li>
+          <a href="{% url 'homepage:home' %}" class="nav-link px-2 text-white"
+            >На главную</a
+          >
+        </li>
+        <li>
+          <a
+            href="{% url 'catalog:item_list' %}"
+            class="nav-link px-2 text-white"
+            >Список товаров</a
+          >
+        </li>
+        <li>
+          <a
+            href="{% url 'about:description' %}"
+            class="nav-link px-2 text-secondary"
+            >О проекте</a
+          >
+        </li>
+        {% else %}
+        <li>
+          <a href="{% url 'homepage:home' %}" class="nav-link px-2 text-white"
+            >На главную</a
+          >
+        </li>
+        <li>
+          <a
+            href="{% url 'catalog:item_list' %}"
+            class="nav-link px-2 text-secondary"
+            >Список товаров</a
+          >
+        </li>
+        <li>
+          <a
+            href="{% url 'about:description' %}"
+            class="nav-link px-2 text-white"
+            >О проекте</a
+          >
+        </li>
+        {% endif %}
+        {% endwith %}
+      </ul>
 
-          {% with request.resolver_match.view_name as view_name %}
-            {% if view_name == 'homepage:home' %}          
-              <li><a href="{% url 'homepage:home' %}" class="nav-link px-2 text-secondary" >На главную</a></li>
-              <li><a href="{% url 'catalog:item_list' %}" class="nav-link px-2 text-white">Список товаров</a></li>
-              <li><a href="{% url 'about:description' %}" class="nav-link px-2 text-white">О проекте</a></li>
-            {% elif view_name == 'about:description' %}
-              <li><a href="{% url 'homepage:home' %}" class="nav-link px-2 text-white" >На главную</a></li>
-              <li><a href="{% url 'catalog:item_list' %}" class="nav-link px-2 text-white">Список товаров</a></li>
-              <li><a href="{% url 'about:description' %}" class="nav-link px-2 text-secondary">О проекте</a></li>
-            {% else %}
-              <li><a href="{% url 'homepage:home' %}" class="nav-link px-2 text-white" >На главную</a></li>
-              <li><a href="{% url 'catalog:item_list' %}" class="nav-link px-2 text-secondary">Список товаров</a></li>
-              <li><a href="{% url 'about:description' %}" class="nav-link px-2 text-white">О проекте</a></li>
-            {% endif %}
-          {% endwith %}
+      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+        <input
+          type="search"
+          class="form-control form-control-dark"
+          placeholder="Найти..."
+          aria-label="Search"
+        />
+      </form>
 
-          
-        </ul>
-
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control form-control-dark" placeholder="Найти..." aria-label="Search">
-        </form>
-
-        <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">Логин</button>
-          <button type="button" class="btn btn-warning">Зарегистрироваться</button>
-        </div>
+      <div class="text-end">
+        <button type="button" class="btn btn-outline-light me-2">Логин</button>
+        <button type="button" class="btn btn-warning">
+          Зарегистрироваться
+        </button>
       </div>
     </div>
-  </header>
+  </div>
+</header>

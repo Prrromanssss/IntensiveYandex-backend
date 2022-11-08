@@ -98,6 +98,6 @@ python lyceum/manage.py runserver
 ***
 
 ## ER-diagram
-![Image of the ER-diagram](https://github.com/Prrromanssss/LyceumYandex_django/raw/main/media/ER-diagram.png)
+![Image of the ER-diagram](https://github.com/Prrromanssss/LyceumYandex_django/raw/main/media_for_README/ER-diagram.png)
 
 ***

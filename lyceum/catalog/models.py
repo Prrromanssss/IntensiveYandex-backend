@@ -1,4 +1,5 @@
-from core.models import IsPublishedBaseModel, IsPublishedSlugBaseModel
+from core.models import (ImageBaseModel, IsPublishedBaseModel,
+                         IsPublishedSlugBaseModel)
 from django.db import models
 
 from .validators import validate_amazing
@@ -26,6 +27,12 @@ class Item(IsPublishedBaseModel):
         validators=[
             validate_amazing('превосходно', 'роскошно'),
         ],
+    )
+    preview = models.OneToOneField(
+        'Preview',
+        verbose_name='превью',
+        on_delete=models.CASCADE,
+        null=True,
     )
 
     class Meta:
@@ -63,3 +70,40 @@ class Category(IsPublishedSlugBaseModel):
     class Meta:
         verbose_name = 'категория'
         verbose_name_plural = 'категории'
+
+
+class Preview(ImageBaseModel):
+    name = models.CharField(
+        'название',
+        max_length=150,
+        unique=True,
+        help_text='Максимум 150 символов',
+    )
+
+    class Meta:
+        verbose_name = 'превью'
+        verbose_name_plural = 'превью'
+
+    def __str__(self):
+        return self.name
+
+
+class Galery(ImageBaseModel):
+    name = models.CharField(
+        'название',
+        max_length=150,
+        unique=True,
+        help_text='Максимум 150 символов',
+    )
+    item = item = models.ForeignKey(
+        'Item',
+        verbose_name='товар',
+        on_delete=models.CASCADE,
+    )
+
+    class Meta:
+        verbose_name = 'Фото товара'
+        verbose_name_plural = 'Фотогалерея товара'
+
+    def __str__(self):
+        return self.name
