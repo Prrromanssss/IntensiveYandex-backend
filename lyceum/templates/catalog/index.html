@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<h2 class="mt-2">Список товаров</h2>
+
+<div class="card mb-3 mt-2">
+    <div class="card-header">
+        Категория: Спортивное оборудование
+    </div>
+    <div class="card-body">
+            <img src="{% static 'img/boxing-gloves.jpeg' %}" alt="Фотография перчаток" width="350" class="float-left mr-3">
+            <h5 class="card-title"><a href="{% url 'catalog:item_list' %}">Боксеркские перчатки</a></h5>
+            <p class="card-text">
+                Clinch является одним из мировых лидеров в производстве спортивных товаров. В том числе, это относится и к боксерской, а также прочей амуниции для единоборств. К примеру, олимпийские игры в Лондоне 2012 года в дисциплине бокса проводились в экипировке clinch – в боксерских перчатках и шлемах, сертифицированных Международной ассоциацией любительского бокса. Применение экипировки Clinch на столь высоком уровне является признанием ее превосходно высокого качества.
+            </p>
+
+    </div>
+    <div class="card-footer text-muted">
+        Теги: травма, спорт
+    </div>
+</div>
+
+<div class="card mb-3 mt-2">
+    <div class="card-header">
+        Категория: Спортивное оборудование
+    </div>
+    <div class="card-body">
+            <img src="{% static 'img/ski.jpeg' %}" alt="Фотография перчаток" width="350" class="float-left mr-3">
+            <h5 class="card-title"><a href="{% url 'catalog:item_list' %}">Лыжи</a></h5>
+            <p class="card-text">
+                Надежные классические беговые лыжи с системой насечек для сцепления при отталкивании. Модель подойдет начинающим лыжникам. Установленные крепления Step NNN входят в стоимость комплекта. Вдобавок, эти лыжи роскошно сидят на белых штанах.
+            </p>
+
+    </div>
+    <div class="card-footer text-muted">
+        Теги: спорт, лёд, передвижение
+    </div>
+</div>
+
+{% endblock%}

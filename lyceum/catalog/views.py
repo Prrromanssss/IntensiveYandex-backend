@@ -1,9 +1,14 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+
+from .models import Item
 
 
 def item_list(request):
-    return HttpResponse('Список элементов')
+    template_name = 'catalog/index.html'
+    return render(request, template_name)
 
 
 def item_detail(request, pk):
-    return HttpResponse(f'Подробно об элементе {pk}')
+    template_name = 'catalog/view_element.html'
+    context = {'pk': pk}
+    return render(request, template_name, context)
