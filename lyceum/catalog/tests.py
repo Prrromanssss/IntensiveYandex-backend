@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.test import Client, TestCase
 
-from .models import Category, Item, Tag
+from .models import Category, Item, Preview, Tag
 
 
 class DynamicUrlTests(TestCase):
@@ -63,15 +63,19 @@ class ModelTests(TestCase):
             name='Тестовая тэг',
             slug='test-tag-slug',
         )
+        cls.preview = Preview.objects.create(
+            name='Тестовое изображение',
+        )
 
     def test_without_needed_words(self):
+        item_count = Item.objects.count()
         text_endpoints = [
             'какая-то бессмыслица',
             'нероскошно',
             'превосходность',
         ]
         for text in text_endpoints:
-            item_count = Item.objects.count()
+            Item.objects.all().delete()
             with self.subTest(
                  f'This word must fail validation'
                  f' - "{text}"'
@@ -81,7 +85,8 @@ class ModelTests(TestCase):
                     self.item = Item(
                         name='товар номер 1',
                         category=self.category,
-                        text=text
+                        text=text,
+                        preview=self.preview,
                     )
                     self.item.full_clean()
                     self.item.save()
@@ -90,6 +95,7 @@ class ModelTests(TestCase):
                 self.assertEqual(Item.objects.count(), item_count)
 
     def test_with_needed_words(self):
+        item_count = Item.objects.count()
         text_endpoints = [
             'превосходно в нем все',
             'роскошно в нем все',
@@ -99,7 +105,7 @@ class ModelTests(TestCase):
 
         ]
         for text in text_endpoints:
-            item_count = Item.objects.count()
+            Item.objects.all().delete()
             with self.subTest(
                  f'The model Item with such text must be created'
                  f' - "{text}"'
@@ -109,6 +115,7 @@ class ModelTests(TestCase):
                     name='тестовый товар',
                     category=self.category,
                     text=text,
+                    preview=self.preview,
                 )
                 self.item.full_clean()
                 self.item.save()
