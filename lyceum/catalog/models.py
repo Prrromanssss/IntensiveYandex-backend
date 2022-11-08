@@ -95,7 +95,7 @@ class Galery(ImageBaseModel):
         unique=True,
         help_text='Максимум 150 символов',
     )
-    item = item = models.ForeignKey(
+    item = models.ForeignKey(
         'Item',
         verbose_name='товар',
         on_delete=models.CASCADE,
