@@ -39,7 +39,9 @@ class ItemAdmin(admin.ModelAdmin):
     list_editable = ('is_published',)
     list_display_links = ('name',)
     filter_horizontal = ('tags',)
-    inlines = (GaleryInline,)
+    inlines = [
+        GaleryInline,
+    ]
 
     def image_tmb(self, obj):
         if obj.preview:
