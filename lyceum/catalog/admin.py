@@ -1,13 +1,13 @@
 from django.contrib import admin
 
-from .models import Category, Galery, Item, Preview, Tag
+from .models import Category, Gallery, Item, Preview, Tag
 
 admin.site.register(Category)
 admin.site.register(Tag)
 
 
-class GaleryInline(admin.StackedInline):
-    model = Galery
+class GalleryInline(admin.StackedInline):
+    model = Gallery
     readonly_fields = ('image_tmb',)
     extra = 1
 
@@ -24,8 +24,8 @@ class PreviewAdmin(admin.ModelAdmin):
     ]
 
 
-@admin.register(Galery)
-class GaleryAdmin(admin.ModelAdmin):
+@admin.register(Gallery)
+class GalleryAdmin(admin.ModelAdmin):
     list_display = ('name', 'image_tmb', 'item_name')
 
     def item_name(self, obj):
@@ -40,7 +40,7 @@ class ItemAdmin(admin.ModelAdmin):
     list_display_links = ('name',)
     filter_horizontal = ('tags',)
     inlines = [
-        GaleryInline,
+        GalleryInline,
     ]
 
     def image_tmb(self, obj):
