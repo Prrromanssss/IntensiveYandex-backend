@@ -6,8 +6,8 @@ admin.site.register(Category)
 admin.site.register(Tag)
 
 
-class GalleryInline(admin.StackedInline):
-    model = Gallery
+class GaleryInline(admin.StackedInline):
+    model = Galery
     readonly_fields = ('image_tmb',)
     extra = 1
 
@@ -24,7 +24,7 @@ class PreviewAdmin(admin.ModelAdmin):
     ]
 
 
-@admin.register(Gallery)
+@admin.register(Galery)
 class GalleryAdmin(admin.ModelAdmin):
     list_display = ('name', 'image_tmb', 'item_name')
 
@@ -40,7 +40,7 @@ class ItemAdmin(admin.ModelAdmin):
     list_display_links = ('name',)
     filter_horizontal = ('tags',)
     inlines = [
-        GalleryInline,
+        GaleryInline,
     ]
 
     def image_tmb(self, obj):
