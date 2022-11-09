@@ -88,7 +88,7 @@ class Preview(ImageBaseModel):
         return self.name
 
 
-class Gallery(ImageBaseModel):
+class Galery(ImageBaseModel):
     name = models.CharField(
         'название',
         max_length=150,
