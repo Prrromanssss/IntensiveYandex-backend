@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Gallery, Item, Preview, Tag
+from .models import Category, Galery, Item, Preview, Tag
 
 admin.site.register(Category)
 admin.site.register(Tag)
