@@ -29,10 +29,14 @@ class IsPublishedSlugBaseModel(IsPublishedBaseModel):
 
 
 class ImageBaseModel(models.Model):
+    name = models.CharField(
+        'название',
+        max_length=150,
+        help_text='Максимум 150 символов',
+    )
     image = models.ImageField(
         'превью товара',
         upload_to='previews/%Y/%m/%d',
-        blank=True,
     )
 
     @property
@@ -49,5 +53,13 @@ class ImageBaseModel(models.Model):
     image_tmb.short_description = 'превью'
     image_tmb.allow_tags = True
 
+    def item_name(self):
+        return self.item.name
+
+    item_name.short_description = 'товар'
+
     class Meta:
         abstract = True
+
+    def __str__(self):
+        return self.name

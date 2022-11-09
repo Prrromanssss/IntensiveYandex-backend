@@ -28,12 +28,6 @@ class Item(IsPublishedBaseModel):
             validate_amazing('превосходно', 'роскошно'),
         ],
     )
-    preview = models.OneToOneField(
-        'Preview',
-        verbose_name='превью',
-        on_delete=models.CASCADE,
-        null=True,
-    )
 
     class Meta:
         verbose_name = 'товар'
@@ -73,28 +67,19 @@ class Category(IsPublishedSlugBaseModel):
 
 
 class Preview(ImageBaseModel):
-    name = models.CharField(
-        'название',
-        max_length=150,
-        unique=True,
-        help_text='Максимум 150 символов',
+    item = models.OneToOneField(
+        'Item',
+        verbose_name='товар',
+        on_delete=models.CASCADE,
+        null=True,
     )
 
     class Meta:
         verbose_name = 'превью'
         verbose_name_plural = 'превью'
 
-    def __str__(self):
-        return self.name
-
 
 class Gallery(ImageBaseModel):
-    name = models.CharField(
-        'название',
-        max_length=150,
-        unique=True,
-        help_text='Максимум 150 символов',
-    )
     item = models.ForeignKey(
         'Item',
         verbose_name='товар',
@@ -104,6 +89,3 @@ class Gallery(ImageBaseModel):
     class Meta:
         verbose_name = 'Фото товара'
         verbose_name_plural = 'Фотогалерея товара'
-
-    def __str__(self):
-        return self.name
