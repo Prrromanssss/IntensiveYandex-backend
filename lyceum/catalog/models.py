@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from core.models import (ImageBaseModel, IsPublishedBaseModel,
                          IsPublishedSlugBaseModel)
 from django.db import models
@@ -21,7 +22,8 @@ class Item(IsPublishedBaseModel):
         'Tag',
         verbose_name='тег',
     )
-    text = models.TextField(
+
+    text = RichTextField(
         'описание',
         help_text='Описание должно содержать слова "роскошно" и "превосходно"',
         validators=[

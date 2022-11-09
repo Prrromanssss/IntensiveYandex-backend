@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'catalog.apps.CatalogConfig',
     'about.apps.AboutConfig',
     'sorl.thumbnail',
+    'ckeditor',
     'django_cleanup.apps.CleanupConfig',
 ]
 
