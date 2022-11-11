@@ -21,31 +21,35 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Gallery)
 class GalleryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'image_tmb', 'item_name')
+    list_display = ('small_image_tmb', 'item_name')
 
 
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ('name', 'is_published', 'image_tmb')
+    list_display = ('small_image_tmb', 'name', 'category_name', 'is_published')
     list_editable = ('is_published',)
     list_display_links = ('name',)
     filter_horizontal = ('tags',)
     fields = ('name', 'category', 'tags', 'text', 'is_published')
     inlines = [
-        GalleryInline,
         PreviewInline,
+        GalleryInline,
     ]
 
-    def image_tmb(self, obj):
+    def category_name(self, obj):
+        return obj.category.name
+    category_name.short_description = 'категория'
+
+    def small_image_tmb(self, obj):
         if obj.preview:
-            return obj.preview.image_tmb()
+            return obj.preview.small_image_tmb()
         return 'Нет изображения'
-    image_tmb.short_description = 'превью'
+    small_image_tmb.short_description = 'превью'
 
 
 @admin.register(Preview)
 class PreviewAdmin(admin.ModelAdmin):
-    list_display = ('name', 'image_tmb', 'item_name')
+    list_display = ('small_image_tmb', 'item_name')
 
 
 @admin.register(Tag)
