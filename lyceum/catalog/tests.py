@@ -63,9 +63,7 @@ class ModelTests(TestCase):
             name='Тестовая тэг',
             slug='test-tag-slug',
         )
-        cls.preview = Preview.objects.create(
-            name='Тестовое изображение',
-        )
+        cls.preview = Preview.objects.create()
 
     def test_without_needed_words(self):
         item_count = Item.objects.count()
