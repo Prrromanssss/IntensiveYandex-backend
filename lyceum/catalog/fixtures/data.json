@@ -1,124 +1,248 @@
 [
-    {
-        "model": "catalog.item",
-        "id": 1,
-        "fields": {
-            "name": "Грузовик",
-            "is_published": true,
-            "text": "Этот грузовик ездит превосходно",
-            "category": 2,
-            "tags": [4, 5]
-                   }
-    },
-    {
-        "model": "catalog.item",
-        "id": 2,
-        "fields": {
-            "name": "Коньки",
-            "is_published": true,
-            "text": "Эти коньки выглядят роскошно",
-            "category": 1,
-            "tags": [2, 3, 4]
-                   }
-    },
-    {
-        "model": "catalog.item",
-        "id": 3,
-        "fields": {
-            "name": "Снегоуборочная машина",
-            "is_published": true,
-            "text": "Снегоуборочная машина превосходно справляется со своими задачами",
-            "category": 2,
-            "tags": [3, 4, 5]
-                   }
-    },
-    {
-        "model": "catalog.item",
-        "id": 4,
-        "fields": {
-            "name": "Лыжи",
-            "is_published": true,
-            "text": "Эти лыжи роскошно подходят под белые штаны",
-            "category": 1,
-            "tags": [2, 3, 4]
-                   }
-    },
-    {
-        "model": "catalog.item",
-        "id": 5,
-        "fields": {
-            "name": "Боксерские перчатки",
-            "is_published": false,
-            "text": "Только лучшие, превосходно боксирующие спортсмены носили эти перчатки ",
-            "category": 1,
-            "tags": [1, 2]
-                   }
-    },
-
-    {
-        "model": "catalog.tag",
-        "id": 1,
-        "fields": {
-            "name": "травма",
-            "is_published": true,
-            "slug": "injury-tag"
-                  }
-    },
-    {
-        "model": "catalog.tag",
-        "id": 2,
-        "fields": {
-            "name": "спорт",
-            "is_published": true,
-            "slug": "sport-tag"
-                  }
-    },
-    {
-        "model": "catalog.tag",
-        "id": 3,
-        "fields": {
-            "name": "лёд",
-            "is_published": true,
-            "slug": "ice-tag"
-                  }
-    },
-    {
-        "model": "catalog.tag",
-        "id": 4,
-        "fields": {
-            "name": "передвижение",
-            "is_published": true,
-            "slug": "movement-tag"
-                  }
-    },
-    {
-        "model": "catalog.tag",
-        "id": 5,
-        "fields": {
-            "name": "машина",
-            "is_published": true,
-            "slug": "car-tag"
-                  }
-    },
-
-    {
-        "model": "catalog.category",
-        "id": 1,
-        "fields": {
-            "name": "Спортивное оборудование",
-            "is_published": true,
-            "slug": "sport-inventory-tag",
-            "weight": 6
-                  }
-    },
-    {
-        "model": "catalog.category",
-        "id": 2,
-        "fields": {
-            "name": "Транспорт",
-            "is_published": true,
-            "slug": "transport-category",
-            "weight": 3
-                  }
-    }
+{
+  "model": "catalog.item",
+  "pk": 6,
+  "fields": {
+    "is_published": true,
+    "name": "Гарфилд",
+    "category": 3,
+    "text": "<p>У толстого рыжего кота&nbsp;<strong>Гарфилда</strong>&nbsp;по воле его хозяина Джона Арбакла неожиданно и роскошно появилась соседка по квартире - милая, но глуповатая дворняжка Оди. Кот сразу невзлюбил ее и все время думал, как от нее избавиться. Однако когда Оди похищает коварный инструктор-собаковод,&nbsp;<strong>Гарфилда</strong>&nbsp;начинает мучить совесть.</p>",
+    "is_on_main": true,
+    "tags": [
+      6,
+      9,
+      11
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 7,
+  "fields": {
+    "is_published": true,
+    "name": "«Молния» Маккуин",
+    "category": 3,
+    "text": "<p>Неукротимый в своем желании всегда и во всем побеждать гоночный автомобиль &laquo;Молния&raquo; Маккуин вдруг обнаруживает, что сбился с пути и что все не так уж и превосходно, ведь он застрял в маленьком захолустном городке Радиатор-Спрингс, что находится где-то на трассе 66 в Калифорнии.</p>",
+    "is_on_main": true,
+    "tags": [
+      6,
+      9,
+      10
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 8,
+  "fields": {
+    "is_published": true,
+    "name": "Кот в сапогах",
+    "category": 3,
+    "text": "<p>Мечи пересекутся и сердца будут разбиты в приключениях с одним из самых любимых персонажей из Шрэка &mdash; котом в сапогах. Это удалая поездка ранних лет кота в сапогах, когда он объединяется с умным Шалтай-Болтаем и сообразительной Кисой, чтобы украсть знаменитую Гусыню, несущую превосходно золотые яйца.</p>",
+    "is_on_main": false,
+    "tags": [
+      6,
+      9,
+      11
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 9,
+  "fields": {
+    "is_published": true,
+    "name": "Кошки против собак",
+    "category": 4,
+    "text": "<p>Тайная война между ними скрыта от человеческих глаз, и хозяева даже не подозревают, что их питомцы являются членами секретных организаций с военными базами, превосходно развитой системой связи и школой подготовки суперагентов. Разведка, шпионаж, терроризм, похищения, взлом, пытки &ndash; коты не остановятся ни перед чем в осуществлении своей цели: заражении людей аллергией на собак.</p>",
+    "is_on_main": true,
+    "tags": [
+      11,
+      12
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 10,
+  "fields": {
+    "is_published": true,
+    "name": "Котопёс",
+    "category": 5,
+    "text": "<p>КотоПес &mdash; это странный гибрид кошки и собаки, живущий в абсурдном, загадочном мире, наполненном удивительными персонажами, парадоксальными событиями и безумными приключениями. Кот и Пёс &mdash; верные друзья, невзирая на их противоположные привычки, они роскошно ладят друг с другом. Все кошки &mdash; чистюли. Собаки же &mdash; разгильдяи и грязнули. Кошки привередливы. Собаки едят всё подряд. Кошки обожают понежиться на солнышке. Собаки, увидев лужу, спешат в нее залезть. Кот и Пёс любят друг друга, но, несмотря на это, полетят клочки по закоулочкам!</p>",
+    "is_on_main": true,
+    "tags": [
+      6,
+      9,
+      11
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 11,
+  "fields": {
+    "is_published": true,
+    "name": "Том и Джерри",
+    "category": 5,
+    "text": "<p>Благодаря своему <strong>проворству, находчивости и хитрости<em> </em></strong><em>Джерри</em> не дает спуску мяукающей братии в лице <em>Тома</em> &ndash; простоватого домашнего кота, у которого есть теплый угол, мягкая подушка и миска, в которой всегда найдется что-нибудь превосходно вкусненькое. Но Тому не дает жить спокойной жизнью (то есть мурлыкать от удовольствия, когда его чешут за ухом, спать почти круглые сутки, драть когти о хозяйскую мебель, орать по весне во все своё кошачье горло) то, что под одной крышей с ним живет проныра <em>Джерри</em>, всё время ускользающий из кошачьих когтистых лап.</p>",
+    "is_on_main": true,
+    "tags": [
+      6,
+      9,
+      11,
+      13
+    ]
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 6,
+  "fields": {
+    "is_published": true,
+    "slug": "fun-tag-slug",
+    "name": "веселье"
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 7,
+  "fields": {
+    "is_published": true,
+    "slug": "to-cry-tag-slug",
+    "name": "поплакать"
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 8,
+  "fields": {
+    "is_published": true,
+    "slug": "new-tag-slug",
+    "name": "новинки"
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 9,
+  "fields": {
+    "is_published": true,
+    "slug": "for-kids-tag-slug",
+    "name": "для детей"
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 10,
+  "fields": {
+    "is_published": false,
+    "slug": "space-tag-slug",
+    "name": "космос"
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 11,
+  "fields": {
+    "is_published": true,
+    "slug": "cats-tag-slug",
+    "name": "кисы"
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 12,
+  "fields": {
+    "is_published": true,
+    "slug": "cats-vs-dogs-tag-slug",
+    "name": "кошки vs собаки"
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 13,
+  "fields": {
+    "is_published": true,
+    "slug": "classic-tag-slug",
+    "name": "классика"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 3,
+  "fields": {
+    "is_published": true,
+    "slug": "cartoon-category-slug",
+    "name": "Мультфильмы",
+    "weight": 100
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 4,
+  "fields": {
+    "is_published": true,
+    "slug": "film-category-slug",
+    "name": "Фильмы",
+    "weight": 87
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 5,
+  "fields": {
+    "is_published": true,
+    "slug": "series-category-slug",
+    "name": "Сериалы",
+    "weight": 100
+  }
+},
+{
+  "model": "catalog.preview",
+  "pk": 4,
+  "fields": {
+    "image": "previews/2022/11/15/garfield_hp_bpmnny.jpeg",
+    "item": 6
+  }
+},
+{
+  "model": "catalog.preview",
+  "pk": 6,
+  "fields": {
+    "image": "previews/2022/11/15/tachki-molniya-makvin-x-768.jpeg",
+    "item": 7
+  }
+},
+{
+  "model": "catalog.preview",
+  "pk": 7,
+  "fields": {
+    "image": "previews/2022/11/15/22fa9437434982ea805c89581a59f5487dff254c222261114e9668c829225a9f.jpeg",
+    "item": 8
+  }
+},
+{
+  "model": "catalog.preview",
+  "pk": 8,
+  "fields": {
+    "image": "previews/2022/11/15/110382_original.png",
+    "item": 9
+  }
+},
+{
+  "model": "catalog.preview",
+  "pk": 9,
+  "fields": {
+    "image": "previews/2022/11/15/78ba1f95a2a0a602ed0c003fbf28b591.webp",
+    "item": 10
+  }
+},
+{
+  "model": "catalog.preview",
+  "pk": 10,
+  "fields": {
+    "image": "previews/2022/11/15/-Umzuww9qcM.jpeg",
+    "item": 11
+  }
+}
 ]

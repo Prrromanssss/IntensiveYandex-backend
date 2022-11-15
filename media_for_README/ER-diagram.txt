@@ -1,0 +1,41 @@
+catalog_tag
+-
+ID integer pk
+is_published bool
+slug varchar(200)
+name varchar(150)
+
+catalog_item_tags
+-
+ID integer pk
+item_id bigint FK >- catalog_item.ID
+tag_id bigint FK >- catalog_tag.ID
+
+catalog_item
+-
+ID integer pk
+is_published bool
+name varchar(150)
+text text
+category_id bigint FK >- catalog_category.ID
+
+catalog_category
+-
+ID integer pk
+is_published bool
+slug varchar(200)
+weight smallint
+name varchar(150)
+
+catalog_galery
+-
+ID integer pk
+image varchar(100)
+item_id bigint FK >- catalog_item.ID
+name varchar(150)
+
+catalog_preview
+-
+ID integer pk 
+image varchar(100)
+name varchar(150)

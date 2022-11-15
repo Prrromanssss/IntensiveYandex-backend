@@ -1,6 +1,13 @@
+import random
+
+from catalog.models import Item
 from django.shortcuts import render
 
 
 def home(request):
     template_name = 'homepage/index.html'
-    return render(request, template_name)
+    items = Item.objects.published(is_on_main=True, order_by='name')
+    context = {
+        'items': items,
+    }
+    return render(request, template_name, context)

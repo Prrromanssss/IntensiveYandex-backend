@@ -1,0 +1,24 @@
+{% for item in items%}
+
+<div class="container">
+    {% with request.resolver_match.view_name as view_name %}
+        {% if view_name == 'catalog:item_list' %}
+            {% ifchanged %}
+                  <br>
+                  <h4>Категория: {{ item.category.name }}</h4>
+            {% endifchanged %}
+        {% endif %}
+    {% endwith %}
+  <div class="card mb-3">
+    <div class="card-header">Категория: {{ item.category.name }}</div>
+    <div class="card-body">
+      <h5 class="card-title">{{ item.name }}</h5>
+      <p class="card-text">{{ item.text|safe|truncatewords:10 }}</p>
+    </div>
+    <div class="card-footer text-muted">
+      Теги: {% for tag in item.tags.all %} {% if forloop.last %} {{ tag.name }}.
+      {% else %} {{ tag.name }}, {% endif %} {% endfor %}
+    </div>
+  </div>
+</div>
+{% endfor %}
