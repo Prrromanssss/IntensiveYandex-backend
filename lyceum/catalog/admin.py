@@ -17,6 +17,8 @@ class PreviewInline(admin.TabularInline):
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     fields = ('name', 'slug', 'is_published', 'weight')
+    list_display = ('name', 'is_published')
+    list_editable = ('is_published',)
 
 
 @admin.register(Gallery)
