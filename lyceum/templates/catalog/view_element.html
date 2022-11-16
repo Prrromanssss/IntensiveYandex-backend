@@ -14,8 +14,14 @@
       </div>
     </div>
     <div class="card-footer text-muted">
-      Теги: {% for tag in item.tags.all %} {% if forloop.last %} {{ tag.name }}.
-      {% else %} {{ tag.name }}, {% endif %} {% endfor %}
+      Теги:
+          {% for tag in item.tags.all %}
+              {% if forloop.last %}
+                  {{ tag.name }}.
+              {% else %}
+                  {{ tag.name }},
+              {% endif %}
+          {% endfor %}
     </div>
   </div>
 </div>
