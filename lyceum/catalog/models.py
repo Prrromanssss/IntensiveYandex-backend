@@ -7,15 +7,6 @@ from django.db.models import Prefetch
 from .validators import validate_amazing
 
 
-class TagManager(models.Manager):
-    def published(self):
-        return (
-            self.get_queryset()
-            .filter(is_published=True)
-            .only('name')
-        )
-
-
 class ItemManager(models.Manager):
     def published(self, order_by=None, is_on_main=None):
         query_set = (
@@ -78,6 +69,15 @@ class Item(IsPublishedBaseModel):
         verbose_name = 'товар'
         verbose_name_plural = 'товары'
         default_related_name = 'items'
+
+
+class TagManager(models.Manager):
+    def published(self):
+        return (
+            self.get_queryset()
+            .filter(is_published=True)
+            .only('name')
+        )
 
 
 class Tag(SlugBaseModel, IsPublishedBaseModel, UniqueNameBaseModel):
