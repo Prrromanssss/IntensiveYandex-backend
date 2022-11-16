@@ -1,6 +1,6 @@
 from ckeditor.fields import RichTextField
-from core.models import (ImageBaseModel, IsPublishedBaseModel,
-                         IsPublishedSlugBaseModel)
+from core.models import (ImageBaseModel, IsPublishedBaseModel, SlugBaseModel,
+                         UniqueNameBaseModel)
 from django.db import models
 from django.db.models import Prefetch
 
@@ -80,28 +80,15 @@ class Item(IsPublishedBaseModel):
         default_related_name = 'items'
 
 
-class Tag(IsPublishedSlugBaseModel):
+class Tag(SlugBaseModel, IsPublishedBaseModel, UniqueNameBaseModel):
     objects = TagManager()
-
-    name = models.CharField(
-        'название',
-        max_length=150,
-        unique=True,
-        help_text='Максимум 150 символов',
-    )
 
     class Meta:
         verbose_name = 'тег'
         verbose_name_plural = 'теги'
 
 
-class Category(IsPublishedSlugBaseModel):
-    name = models.CharField(
-        'название',
-        max_length=150,
-        unique=True,
-        help_text='Максимум 150 символов',
-    )
+class Category(SlugBaseModel, IsPublishedBaseModel, UniqueNameBaseModel):
     weight = models.PositiveSmallIntegerField(
         'вес',
         default=100,

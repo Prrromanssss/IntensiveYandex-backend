@@ -17,12 +17,23 @@ class IsPublishedBaseModel(models.Model):
         return self.name
 
 
-class IsPublishedSlugBaseModel(IsPublishedBaseModel):
+class SlugBaseModel(models.Model):
     slug = models.SlugField(
         'slug',
         max_length=200,
         unique=True,
         help_text='Только slug-значения, максимум 200 символов',
+    )
+
+    class Meta:
+        abstract = True
+
+
+class UniqueNameBaseModel(models.Model):
+    name = models.CharField(
+        'название',
+        max_length=150,
+        help_text='Максимум 150 символов',
     )
 
     class Meta:
