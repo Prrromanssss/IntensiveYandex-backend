@@ -1,0 +1,53 @@
+<div class="container">
+  {% with request.resolver_match.view_name as view_name %}
+      {% if view_name == 'catalog:item_list' %}
+          {% ifchanged %}
+                <br>
+                <h4>Категория: {{ item.category.name }}</h4>
+          {% endifchanged %}
+      {% else %}
+      {% endif %}
+  {% endwith %}
+
+<div class="card mb-3">
+    {% with request.resolver_match.view_name as view_name %}
+        {% if view_name != 'catalog:item_list' %}
+            <div class="card-header">Категория: {{ item.category.name }}</div>
+        {% endif %}
+    {% endwith %}
+
+  <div class="card-body">
+    <h5 class="card-title">{{ item.name }}</h5>
+        {% with request.resolver_match.view_name as view_name %}
+            {% if view_name == 'catalog:item_detail' %}        
+                {% load thumbnail %}
+                    {% thumbnail item.preview.image "300x300" crop="center" as im %}
+                        <img src="{{ im.url }}"
+                            width="{{ im.width }}"
+                            height="{{ im.height }}"
+                            class="rounded float-end"
+                            alt="Картинка товара">
+                    {% endthumbnail %}
+                {{ item.text|safe}}
+                    <br>
+                    <p><a href="{% url 'catalog:item_list' %}">Обратно к списку товаров</a></p>
+            {% else %}
+                {{ item.text|safe|truncatewords:10 }}
+                <br>
+                <p><a href="{% url 'catalog:item_detail' item.id %}">Перейти к товару</a></p>
+            {% endif %}
+        {% endwith %}
+  </div>
+  <div class="card-footer text-muted">
+    Теги:
+    {% for tag in item.tags.all %}
+        {{ tag.name }}
+        {% if not forloop.last %}
+            ,
+        {% endif %}
+    {% empty %}
+        <p>Тегов пока нет</p>
+    {% endfor %}
+  </div>
+</div>
+</div>

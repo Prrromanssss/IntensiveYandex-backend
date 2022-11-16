@@ -5,7 +5,7 @@ from .models import Item
 
 def item_list(request):
     template_name = 'catalog/index.html'
-    items = Item.objects.published(order_by='category__name')
+    items = Item.objects.published().order_by('category__name', 'name')
     context = {
         'items': items,
     }
@@ -19,6 +19,6 @@ def item_detail(request, pk):
         pk=pk
     )
     context = {
-        'item': item
+        'item': item,
     }
     return render(request, template_name, context)

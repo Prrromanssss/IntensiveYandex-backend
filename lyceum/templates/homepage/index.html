@@ -17,6 +17,7 @@
     <p>- Гарфилд</p>
   </div>
 </div>
-
-{% include 'catalog/includes/quick_view_of_the_item.html' %}
+{% for item in items%}
+    {% include 'catalog/includes/card.html' %}
+{% endfor %}
 {% endblock %}

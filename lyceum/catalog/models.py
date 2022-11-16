@@ -8,10 +8,10 @@ from .validators import validate_amazing
 
 
 class ItemManager(models.Manager):
-    def published(self, order_by=None, is_on_main=None):
-        query_set = (
+    def published(self):
+        return (
             self.get_queryset()
-            .select_related('category')
+            .select_related('category', 'preview')
             .filter(
                 is_published=True,
                 category__is_published=True
@@ -21,16 +21,8 @@ class ItemManager(models.Manager):
                     'tags', queryset=Tag.objects.published()
                 )
             )
-            .only('name', 'text', 'category_id', 'category__name')
+            .only('name', 'text', 'category__name', 'preview__image')
         )
-
-        if is_on_main is not None:
-            query_set = query_set.filter(is_on_main=is_on_main)
-
-        if order_by is not None:
-            query_set = query_set.order_by(order_by)
-
-        return query_set # noqa
 
 
 class Item(IsPublishedBaseModel):

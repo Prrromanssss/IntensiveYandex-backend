@@ -3,26 +3,5 @@
 {% load static %}
 
 {% block content %}
-<br>
-<div class="container">
-  <div class="card mb-3">
-    <div class="card-header">Категория: {{ item.category.name }}</div>
-    <div class="card-body">
-      <div class="container">
-        <h5 class="card-title">{{ item.name }}</h5>
-        {{ item.text|safe }}
-      </div>
-    </div>
-    <div class="card-footer text-muted">
-      Теги:
-          {% for tag in item.tags.all %}
-              {% if forloop.last %}
-                  {{ tag.name }}.
-              {% else %}
-                  {{ tag.name }},
-              {% endif %}
-          {% endfor %}
-    </div>
-  </div>
-</div>
+{% include 'catalog/includes/card.html' %}
 {% endblock%}
