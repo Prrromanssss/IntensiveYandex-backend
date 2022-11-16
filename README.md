@@ -56,20 +56,27 @@ python lyceum/manage.py migrate
 
 ### 6. Database setup
 
-#### The first way
-6.1.1 The example of the database you can see in the 'examples/db_example.sqlite3' file
-
-6.2.1 Copy this database to 'lyceum/db.sqlite3'
-
-#### The second way
-6.1.2 To load data for database from the fixtures run this command
+6.1.1 To load data for database from the fixtures run this command
 ```commandline
 python lyceum/manage.py loaddata data.json
 ```
 
+#### OR
+
+6.1.2 The example of the database you can see in the 'examples/db_example.sqlite3' file
+6.2.2 Copy this database to 'lyceum/db.sqlite3'
+
+
 ### 7. Authorizing admin user
 
-#### The first way
+7.1.2 If you have loaded data from the fixtures, run this command to authorize admin user
+```commandline
+python lyceum/manage.py createsuperuser
+```
+7.2.2 Enter username and password for admin user
+
+#### OR
+
 7.1.1 If you have copied example database, you have already authorizing admin user
 ```commandline
 Username: admin
@@ -77,11 +84,7 @@ Password: 12345
 ```
 
 #### The second way
-7.1.2 If you have loaded data from the fixtures, run this command to authorize admin user
-```commandline
-python lyceum/manage.py createsuperuser
-```
-7.2.2 Write username and password for admin user
+
 
 7.3 After running project you can access admin page by following '127.0.0.1:8000/admin' or 'localhost:8000/admin'
 
