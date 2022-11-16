@@ -33,6 +33,7 @@ class UniqueNameBaseModel(models.Model):
     name = models.CharField(
         'название',
         max_length=150,
+        unique=True,
         help_text='Максимум 150 символов',
     )
 
