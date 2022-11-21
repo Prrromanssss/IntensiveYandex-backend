@@ -1,20 +1,20 @@
 from django import forms
 
-from .models import FeedBack
+from .models import Feedback
 
 
-class FeedBackForm(forms.ModelForm):
+class FeedbackForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.visible_fields():
             field.field.widget.attrs['class'] = 'form-control'
 
     class Meta:
-        model = FeedBack
+        model = Feedback
         fields = (
-            FeedBack.text.field.name,
-            FeedBack.mail.field.name,
-            FeedBack.name.field.name,
+            Feedback.text.field.name,
+            Feedback.mail.field.name,
+            Feedback.name.field.name,
         )
         widgets = {
             'text': forms.Textarea(attrs={

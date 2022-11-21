@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class FeedBack(models.Model):
+class Feedback(models.Model):
     name = models.CharField(
         'имя',
         max_length=150,

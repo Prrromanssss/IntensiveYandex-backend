@@ -4,15 +4,15 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 from dotenv import load_dotenv
 
-from .forms import FeedBackForm
-from .models import FeedBack
+from .forms import FeedbackForm
+from .models import Feedback
 
 load_dotenv()
 
 
 def feedback(request):
     template_name = 'feedback/index.html'
-    form = FeedBackForm(request.POST or None)
+    form = FeedbackForm(request.POST or None)
     context = {
         'form': form,
     }
@@ -28,7 +28,7 @@ def feedback(request):
             fail_silently=False,
         )
 
-        feedback = FeedBack.objects.create(
+        feedback = Feedback.objects.create(
             **form.cleaned_data
         )
         feedback.save()

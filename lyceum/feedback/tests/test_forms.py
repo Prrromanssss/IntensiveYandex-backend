@@ -1,15 +1,15 @@
 from django.test import Client, TestCase
 from django.urls import reverse
 
-from ..forms import FeedBackForm
-from ..models import FeedBack
+from ..forms import FeedbackForm
+from ..models import Feedback
 
 
 class FormTests(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.form = FeedBackForm()
+        cls.form = FeedbackForm()
 
     def test_text_label(self):
         text_label = self.form.fields['text'].label
@@ -32,7 +32,7 @@ class FormTests(TestCase):
         self.assertEqual(name_help_text, 'Максимум 150 символов')
 
     def test_create_task(self):
-        feedback_count = FeedBack.objects.count()
+        feedback_count = Feedback.objects.count()
 
         form_data = {
             'text': 'Тест',
@@ -48,10 +48,10 @@ class FormTests(TestCase):
 
         self.assertRedirects(response, reverse('feedback:feedback'))
 
-        self.assertEqual(FeedBack.objects.count(), feedback_count + 1)
+        self.assertEqual(Feedback.objects.count(), feedback_count + 1)
 
         self.assertTrue(
-            FeedBack.objects.filter(
+            Feedback.objects.filter(
                 text='Тест',
                 name='Иванов Иван',
                 mail='1@example.com',

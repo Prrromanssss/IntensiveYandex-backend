@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from .models import FeedBack
+from .models import Feedback
 
 
-@admin.register(FeedBack)
+@admin.register(Feedback)
 class FeedbackAdmin(admin.ModelAdmin):
     list_display = ('name', 'short_text', 'created_on')
     fields = ('name', 'mail', 'text', 'created_on')
