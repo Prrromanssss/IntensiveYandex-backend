@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Gallery, Item, Preview, Tag
+from .models import Category, Gallery, Item, MainImage, Tag
 
 
 class GalleryInline(admin.TabularInline):
@@ -9,8 +9,8 @@ class GalleryInline(admin.TabularInline):
     extra = 1
 
 
-class PreviewInline(admin.TabularInline):
-    model = Preview
+class MainImageInline(admin.TabularInline):
+    model = MainImage
     readonly_fields = ('image_tmb',)
 
 
@@ -40,7 +40,7 @@ class ItemAdmin(admin.ModelAdmin):
     filter_horizontal = ('tags',)
     fields = ('name', 'category', 'tags', 'text', 'is_published', 'is_on_main')
     inlines = [
-        PreviewInline,
+        MainImageInline,
         GalleryInline,
     ]
 
@@ -49,14 +49,14 @@ class ItemAdmin(admin.ModelAdmin):
     category_name.short_description = 'категория'
 
     def small_image_tmb(self, obj):
-        if obj.preview:
-            return obj.preview.small_image_tmb()
+        if obj.mainimage:
+            return obj.mainimage.small_image_tmb()
         return 'Нет изображения'
-    small_image_tmb.short_description = 'превью'
+    small_image_tmb.short_description = 'главное изображение'
 
 
-@admin.register(Preview)
-class PreviewAdmin(admin.ModelAdmin):
+@admin.register(MainImage)
+class MainImageAdmin(admin.ModelAdmin):
     list_display = ('small_image_tmb', 'item_name')
 
 

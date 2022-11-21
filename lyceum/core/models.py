@@ -43,7 +43,7 @@ class UniqueNameBaseModel(models.Model):
 
 class ImageBaseModel(models.Model):
     image = models.ImageField(
-        'превью товара',
+        'главное изображение товара',
         upload_to='previews/%Y/%m/%d',
     )
 
@@ -61,7 +61,7 @@ class ImageBaseModel(models.Model):
             )
         return 'Нет изображения'
 
-    image_tmb.short_description = 'превью'
+    image_tmb.short_description = 'главное изображение'
     image_tmb.allow_tags = True
 
     @property
@@ -75,7 +75,7 @@ class ImageBaseModel(models.Model):
             )
         return 'Нет изображения'
 
-    small_image_tmb.short_description = 'превью'
+    small_image_tmb.short_description = 'главное изображение'
     small_image_tmb.allow_tags = True
 
     def item_name(self):

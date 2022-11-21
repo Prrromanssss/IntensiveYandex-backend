@@ -36,6 +36,13 @@
             >О проекте</a
           >
         </li>
+        <li>
+          <a
+            href="{% url 'feedback:feedback' %}"
+            class="nav-link px-2 {% if view_name == 'feedback:feedback' %} text-secondary disabled {% else %} text-white {% endif %}"
+            >Фидбэк</a
+          >
+        </li>
         {% endwith %}
       </ul>
     </div>

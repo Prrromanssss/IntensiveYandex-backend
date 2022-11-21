@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center"> Форма обратной связи </h1>
+    <form method="post" >
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group col-sm-5 mx-sm-3 mb-2">                            
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+                {% if field.errors %}
+                    <div class="alert alert-danger">
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary col-sm-1 mx-sm-3">Отправить</button>
+    </form>
+{% endblock %} 

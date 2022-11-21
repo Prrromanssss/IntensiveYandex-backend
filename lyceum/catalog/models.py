@@ -11,7 +11,7 @@ class ItemManager(models.Manager):
     def published(self):
         return (
             self.get_queryset()
-            .select_related('category', 'preview')
+            .select_related('category', 'mainimage')
             .filter(
                 is_published=True,
                 category__is_published=True
@@ -21,7 +21,7 @@ class ItemManager(models.Manager):
                     'tags', queryset=Tag.objects.published()
                 )
             )
-            .only('name', 'text', 'category__name', 'preview__image')
+            .only('name', 'text', 'category__name', 'mainimage__image')
         )
 
 
@@ -61,6 +61,7 @@ class Item(IsPublishedBaseModel):
         verbose_name = 'товар'
         verbose_name_plural = 'товары'
         default_related_name = 'items'
+        ordering = ['name']
 
 
 class TagManager(models.Manager):
@@ -92,7 +93,7 @@ class Category(SlugBaseModel, IsPublishedBaseModel, UniqueNameBaseModel):
         verbose_name_plural = 'категории'
 
 
-class Preview(ImageBaseModel):
+class MainImage(ImageBaseModel):
     item = models.OneToOneField(
         'Item',
         verbose_name='товар',
@@ -101,8 +102,8 @@ class Preview(ImageBaseModel):
     )
 
     class Meta:
-        verbose_name = 'превью'
-        verbose_name_plural = 'превью'
+        verbose_name = 'главное изображение'
+        verbose_name_plural = 'главные изображения'
 
 
 class Gallery(ImageBaseModel):

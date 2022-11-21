@@ -39,7 +39,7 @@
     "name": "Кот в сапогах",
     "category": 3,
     "text": "<p>Мечи пересекутся и сердца будут разбиты в приключениях с одним из самых любимых персонажей из Шрэка &mdash; котом в сапогах. Это удалая поездка ранних лет кота в сапогах, когда он объединяется с умным Шалтай-Болтаем и сообразительной Кисой, чтобы украсть знаменитую Гусыню, несущую превосходно золотые яйца.</p>",
-    "is_on_main": false,
+    "is_on_main": true,
     "tags": [
       6,
       9,
@@ -82,11 +82,11 @@
   "model": "catalog.item",
   "pk": 11,
   "fields": {
-    "is_published": true,
+    "is_published": false,
     "name": "Том и Джерри",
     "category": 5,
     "text": "<p>Благодаря своему <strong>проворству, находчивости и хитрости<em> </em></strong><em>Джерри</em> не дает спуску мяукающей братии в лице <em>Тома</em> &ndash; простоватого домашнего кота, у которого есть теплый угол, мягкая подушка и миска, в которой всегда найдется что-нибудь превосходно вкусненькое. Но Тому не дает жить спокойной жизнью (то есть мурлыкать от удовольствия, когда его чешут за ухом, спать почти круглые сутки, драть когти о хозяйскую мебель, орать по весне во все своё кошачье горло) то, что под одной крышей с ним живет проныра <em>Джерри</em>, всё время ускользающий из кошачьих когтистых лап.</p>",
-    "is_on_main": true,
+    "is_on_main": false,
     "tags": [
       6,
       9,
@@ -135,7 +135,7 @@
   "model": "catalog.tag",
   "pk": 10,
   "fields": {
-    "is_published": false,
+    "is_published": true,
     "slug": "space-tag-slug",
     "name": "космос"
   }
@@ -198,7 +198,7 @@
   }
 },
 {
-  "model": "catalog.preview",
+  "model": "catalog.mainimage",
   "pk": 4,
   "fields": {
     "image": "previews/2022/11/15/garfield_hp_bpmnny.jpeg",
@@ -206,7 +206,7 @@
   }
 },
 {
-  "model": "catalog.preview",
+  "model": "catalog.mainimage",
   "pk": 6,
   "fields": {
     "image": "previews/2022/11/15/tachki-molniya-makvin-x-768.jpeg",
@@ -214,7 +214,7 @@
   }
 },
 {
-  "model": "catalog.preview",
+  "model": "catalog.mainimage",
   "pk": 7,
   "fields": {
     "image": "previews/2022/11/15/22fa9437434982ea805c89581a59f5487dff254c222261114e9668c829225a9f.jpeg",
@@ -222,7 +222,7 @@
   }
 },
 {
-  "model": "catalog.preview",
+  "model": "catalog.mainimage",
   "pk": 8,
   "fields": {
     "image": "previews/2022/11/15/110382_original.png",
@@ -230,7 +230,7 @@
   }
 },
 {
-  "model": "catalog.preview",
+  "model": "catalog.mainimage",
   "pk": 9,
   "fields": {
     "image": "previews/2022/11/15/78ba1f95a2a0a602ed0c003fbf28b591.webp",
@@ -238,7 +238,7 @@
   }
 },
 {
-  "model": "catalog.preview",
+  "model": "catalog.mainimage",
   "pk": 10,
   "fields": {
     "image": "previews/2022/11/15/-Umzuww9qcM.jpeg",

@@ -27,15 +27,23 @@ slug varchar(200)
 weight smallint
 name varchar(150)
 
-catalog_galery
+catalog_gallery
 -
 ID integer pk
 image varchar(100)
 item_id bigint FK >- catalog_item.ID
 name varchar(150)
 
-catalog_preview
+catalog_mainimage
 -
 ID integer pk 
 image varchar(100)
+name varchar(150)
+
+feedback_feedback
+-
+ID integer pk
+text text
+created_on datetime
+mail varchar(254)
 name varchar(150)

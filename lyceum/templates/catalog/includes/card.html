@@ -21,7 +21,7 @@
         {% with request.resolver_match.view_name as view_name %}
             {% if view_name == 'catalog:item_detail' %}        
                 {% load thumbnail %}
-                    {% thumbnail item.preview.image "300x300" crop="center" as im %}
+                    {% thumbnail item.mainimage.image "300x300" crop="center" as im %}
                         <img src="{{ im.url }}"
                             width="{{ im.width }}"
                             height="{{ im.height }}"

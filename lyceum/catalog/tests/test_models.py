@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
-from ..models import Category, Item, Preview, Tag
+from ..models import Category, Item, MainImage, Tag
 
 
 class ModelTests(TestCase):
@@ -16,7 +16,7 @@ class ModelTests(TestCase):
             name='Тестовая тэг',
             slug='test-tag-slug',
         )
-        cls.preview = Preview.objects.create()
+        cls.mainimage = MainImage.objects.create()
 
     def test_without_needed_words(self):
         item_count = Item.objects.count()
@@ -37,7 +37,7 @@ class ModelTests(TestCase):
                         name='товар номер 1',
                         category=self.category,
                         text=text,
-                        preview=self.preview,
+                        mainimage=self.mainimage,
                     )
                     self.item.full_clean()
                     self.item.save()
@@ -66,7 +66,7 @@ class ModelTests(TestCase):
                     name='тестовый товар',
                     category=self.category,
                     text=text,
-                    preview=self.preview,
+                    mainimage=self.mainimage,
                 )
                 self.item.full_clean()
                 self.item.save()
