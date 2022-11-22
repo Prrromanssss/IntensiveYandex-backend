@@ -32,6 +32,10 @@ class Feedback(models.Model):
         return self.short_text()
 
     def short_text(self):
-        return f'{self.text[:10]}...'
+        return (
+            self.text
+            if len(self.text) < 20
+            else f'{self.text[:20]}...'
+        )
 
     short_text.short_description = 'описание фидбэка'
