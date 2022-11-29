@@ -4,9 +4,28 @@
     <div class="row justify-content-center">
         <form method="post" >
             {% csrf_token %}
-
+            {% with request.resolver_match.view_name as view_name %}
+                {% if view_name == 'users:profile' %}
+                    {% for field in birthday_form %}
+                    <div class="form-group col-sm-5  mx-auto mb-2">                            
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.help_text %}
+                            <small class="form-text text-muted">
+                                {{ field.help_text }}                      
+                            </small>
+                        {% endif %}
+                        {% if field.errors %}
+                            <div class="alert alert-danger">
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                {% endif %}      
+            {% endwith %}
             {% for field in form %}
-                <div class="form-group col-sm-5  mx-auto mb-2 ">                            
+                <div class="form-group col-sm-5  mx-auto mb-2">                            
                     {{ field.label_tag }}
                     {{ field|add_class:"form-control" }}
                     {% if field.help_text %}
@@ -33,7 +52,7 @@
                         <button type="submit" class="btn btn-primary mx-sm-3 w-25">
                             Войти
                         </button>
-                    {% elif view_name == 'users:password_change' %}
+                    {% elif view_name == 'users:password_change' or view_name == 'users:profile' %}
                         <button type="submit" class="btn btn-primary mx-sm-3 w-25 ">
                             Обновить
                         </button>

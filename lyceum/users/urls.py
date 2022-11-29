@@ -6,7 +6,7 @@ from django.contrib.auth.views import (LoginView, LogoutView,
                                        PasswordResetConfirmView,
                                        PasswordResetDoneView,
                                        PasswordResetView)
-from django.urls import path, reverse_lazy
+from django.urls import path, re_path, reverse_lazy
 
 from . import views as local_views
 
@@ -83,5 +83,15 @@ urlpatterns = [
         'sign_up/',
         local_views.sign_up,
         name='sign_up'
+    ),
+    path(
+        'user_list/',
+        local_views.user_list,
+        name='user_list'
+    ),
+    re_path(
+        r'user_detail/(?P<pk>[1-9]\d*)/$',
+        local_views.user_detail,
+        name='user_detail'
     )
 ]

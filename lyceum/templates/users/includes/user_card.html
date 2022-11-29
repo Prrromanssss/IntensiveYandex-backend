@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="card mb-3 mt-3">
+    <div class="card-header">Пользователь: {{ user.username }}</div>
+    <div class="card-body">
+      
+      {% with request.resolver_match.view_name as view_name %}
+          {% if view_name == 'users:user_detail' %}
+              <p>Имя: {{ user.first_name }}</p>
+              <p>Фамилия: {{ user.last_name }}</p>
+              <p>День рождения: {{ user.profile.birthday }}</p>
+              <p>
+                  <a href="{% url 'users:user_list' %}">Обратно к списку пользователей</a>
+              </p>
+          {% else %}
+              <p>
+                <a href="{% url 'users:user_detail' user.id %}">Перейти к пользователю</a>
+              </p>
+        {% endif %}
+      {% endwith %}  
+    </div>
+    <div class="card-footer text-muted">
+      Почта: {{ user.email}}
+    </div>
+  </div>
+</div>

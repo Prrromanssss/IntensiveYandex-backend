@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {{ user.username }}
+    <h1 class="text-center">Профиль</h1>
+    <p class="mx-sm-2 lead mb-4">Пользователь: {{ user.username }}</p>
+    <p class="mx-sm-2 lead mb-4">Имя: {{ user.first_name }}</p>
+    <p class="mx-sm-2 lead mb-4">Почта: {{ user.email }}</p>
+    <p class="mx-sm-2 lead mb-4">День рождения: {{ user.profile.birthday }}</p>
+    {% include 'users/includes/form.html' %}
     <a href="{% url 'users:password_change' %}" class="btn btn-primary mx-sm-3">Изменить пароль</a> 
 {% endblock %}

@@ -28,6 +28,13 @@
             class="nav-link px-2 {% if 'catalog' in view_name %} text-secondary disabled {% else %} text-white {% endif %}"
             >Список товаров</a
           >
+          <li>
+            <a
+              href="{% url 'users:user_list' %}"
+              class="nav-link px-2 {% if view_name == 'users:user_list' %} text-secondary disabled {% else %} text-white {% endif %}"
+              >Пользователи</a
+            >
+          </li>
         </li>
         <li>
           <a
@@ -43,6 +50,7 @@
             >Фидбэк</a
           >
         </li>
+        
         {% endwith %}
       </ul>
       <div class="text-end">

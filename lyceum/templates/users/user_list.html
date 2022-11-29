@@ -1,1 +1,9 @@
 {% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center">Список активных пользователей</h1>
+<br>
+{% for user in users%}
+    {% include 'users/includes/user_card.html' %}
+{% endfor %}
+{% endblock %}
