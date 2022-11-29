@@ -78,5 +78,10 @@ urlpatterns = [
         'profile/',
         local_views.profile,
         name='profile'
+    ),
+    path(
+        'sign_up/',
+        local_views.sign_up,
+        name='sign_up'
     )
 ]

@@ -1,5 +1,6 @@
-from django.contrib.auth.admin import User
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+
+from .forms import UserCreationForm
 
 
 def profile(request):
@@ -9,7 +10,16 @@ def profile(request):
 
 def sign_up(request):
     template_name = 'users/sign_up.html'
-    return render(request, template_name)
+    form = UserCreationForm(request.POST or None)
+    context = {
+        'form': form,
+    }
+
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('users:login')
+
+    return render(request, template_name, context)
 
 
 def user_list(request):

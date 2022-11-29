@@ -41,6 +41,10 @@
                         <button type="submit" class="btn btn-primary mx-sm-3 ">
                             Восстановить пароль
                         </button>
+                    {% elif view_name == 'users:sign_up'%}
+                        <button type="submit" class="btn btn-primary mx-sm-3 ">
+                            Зарегистрироваться
+                        </button>
                     {% endif %}
                 {% endwith %}
             </div>

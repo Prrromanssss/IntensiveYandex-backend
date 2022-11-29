@@ -52,12 +52,11 @@
                   {% if view_name == 'users:profile' %}
                       <a href="{% url 'users:logout' %}" class="btn btn-outline-light me-2">Выйти</a>
                   {% else %}
-                  <a href="{% url 'users:profile' %}" class="btn btn-outline-light me-2">Профиль</a> 
-                  <button type="button" class="btn btn-warning">Зарегистрироваться</button>
+                  <a href="{% url 'users:profile' %}" class="btn btn-outline-light">Профиль</a> 
                   {% endif %}                      
               {% else %}
                 <a href="{% url 'users:login' %}" class="btn btn-outline-light me-2">Войти</a>
-                <button type="button" class="btn btn-warning">Зарегистрироваться</button>
+                <a href="{% url 'users:sign_up' %}" class="btn btn-warning">Зарегистрироваться</a>
               {% endif %}
           {% endwith %}   
         
