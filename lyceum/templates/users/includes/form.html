@@ -1,0 +1,50 @@
+{% load widget_tweaks %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <form method="post" >
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div class="form-group col-sm-5  mx-auto mb-2 ">                            
+                    {{ field.label_tag }}
+                    {{ field|add_class:"form-control" }}
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">
+                            {{ field.help_text }}                      
+                        </small>
+                    {% endif %}
+                    {% if field.errors %}
+                        <div class="alert alert-danger">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <div class="col text-center">
+                {% with request.resolver_match.view_name as view_name %}
+                    {% if view_name == 'users:login' %}
+                        <p>
+                            <a href="{% url 'users:password_reset' %}">
+                                Забыли пароль?
+                            </a>
+                        </p>
+                        <button type="submit" class="btn btn-primary mx-sm-3 w-25">
+                            Войти
+                        </button>
+                    {% elif view_name == 'users:password_change' %}
+                        <button type="submit" class="btn btn-primary mx-sm-3 w-25 ">
+                            Обновить
+                        </button>
+                    {% elif view_name == 'users:password_reset' or view_name == 'users:password_reset_confirm' %}
+                        <button type="submit" class="btn btn-primary mx-sm-3 ">
+                            Восстановить пароль
+                        </button>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </form>   
+    </div>
+</div>
+

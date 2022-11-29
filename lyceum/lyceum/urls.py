@@ -26,6 +26,7 @@ urlpatterns = [
     path('about/', include('about.urls', namespace='about')),
     path('feedback/', include('feedback.urls', namespace='feedback')),
     path('admin/', admin.site.urls),
+    path('auth/', include('users.urls', namespace='users')),
 ]
 
 if settings.DEBUG:

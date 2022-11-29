@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ user.username }}
+    <a href="{% url 'users:password_change' %}" class="btn btn-primary mx-sm-3">Изменить пароль</a> 
+{% endblock %}

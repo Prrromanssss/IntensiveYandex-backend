@@ -31,6 +31,9 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
+LOGIN_URL = 'auth/login/'
+LOGIN_REDIRECT_URL = '/'
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -43,10 +46,12 @@ INSTALLED_APPS = [
     'catalog.apps.CatalogConfig',
     'about.apps.AboutConfig',
     'feedback.apps.FeedbackConfig',
+    'users.apps.UsersConfig',
+    'django_cleanup.apps.CleanupConfig',
     'sorl.thumbnail',
     'ckeditor',
-    'django_cleanup.apps.CleanupConfig',
     'debug_toolbar',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
