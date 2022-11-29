@@ -27,7 +27,3 @@ class TaskPagesTests(TestCase):
             args=[1])
         )
         self.assertIn('user', response.context)
-
-    def test_users_shown_correct_context_profile(self):
-        response = Client().get(reverse('users:profile'))
-        self.assertIn('user', response.context)

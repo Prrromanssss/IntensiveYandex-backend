@@ -29,9 +29,12 @@ class StaticUrlTests(TestCase):
     def test_users_endpoints(self):
         endpoints = {
             200: [
-                'profile',
                 'user_list',
+            ],
+            302: [
+                'profile',
             ]
+
         }
         for url in endpoints[200]:
             with self.subTest(f'Succes url - {url}'):
