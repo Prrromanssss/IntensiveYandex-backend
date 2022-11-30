@@ -26,7 +26,7 @@ urlpatterns = [
     path('about/', include('about.urls', namespace='about')),
     path('feedback/', include('feedback.urls', namespace='feedback')),
     path('admin/', admin.site.urls),
-    path('auth/', include('users.urls', namespace='users')),
+    path('users/', include('users.urls', namespace='users')),
 ]
 
 if settings.DEBUG:
@@ -41,3 +41,5 @@ if settings.DEBUG:
     urlpatterns += [
         path('__debug__', include(debug_toolbar.urls))
     ]
+
+handler404 = 'helpers.views.handle_not_found'

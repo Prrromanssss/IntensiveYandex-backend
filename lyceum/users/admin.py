@@ -1,22 +1,33 @@
 from django.contrib import admin
-from django.contrib.auth.admin import User
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.admin import UserAdmin
 
-from .models import Profile
-
-
-class ProfileInline(admin.StackedInline):
-    model = Profile
-
-    can_delete = False
+from .forms import CustomUserChangeForm, CustomUserCreationForm
+from .models import CustomUser
 
 
-class UserAdmin(BaseUserAdmin):
-    inlines = [
-        ProfileInline,
-    ]
-
-
-admin.site.unregister(User)
-
-admin.site.register(User, UserAdmin)
+@admin.register(CustomUser)
+class CustomUserAdmin(UserAdmin):
+    add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
+    model = CustomUser
+    readonly_fields = ('password',)
+    list_display = ('email', 'is_staff', 'is_active',)
+    list_filter = ('email', 'is_staff', 'is_active',)
+    fieldsets = (
+        (None, {'fields': ('email', 'password', 'first_name',
+                'last_name', 'birthday')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active')}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': (
+                'email',
+                'password1',
+                'password2',
+                'is_staff',
+                'is_active',
+            )}),
+    )
+    search_fields = ('email',)
+    ordering = ('email',)

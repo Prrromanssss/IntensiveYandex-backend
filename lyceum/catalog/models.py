@@ -2,27 +2,9 @@ from ckeditor.fields import RichTextField
 from core.models import (ImageBaseModel, IsPublishedBaseModel, SlugBaseModel,
                          UniqueNameBaseModel)
 from django.db import models
-from django.db.models import Prefetch
 
+from .managers import ItemManager, TagManager
 from .validators import validate_amazing
-
-
-class ItemManager(models.Manager):
-    def published(self):
-        return (
-            self.get_queryset()
-            .select_related('category', 'mainimage')
-            .filter(
-                is_published=True,
-                category__is_published=True
-            )
-            .prefetch_related(
-                Prefetch(
-                    'tags', queryset=Tag.objects.published()
-                )
-            )
-            .only('name', 'text', 'category__name', 'mainimage__image')
-        )
 
 
 class Item(IsPublishedBaseModel):
@@ -62,15 +44,6 @@ class Item(IsPublishedBaseModel):
         verbose_name_plural = 'товары'
         default_related_name = 'items'
         ordering = ['name']
-
-
-class TagManager(models.Manager):
-    def published(self):
-        return (
-            self.get_queryset()
-            .filter(is_published=True)
-            .only('name')
-        )
 
 
 class Tag(SlugBaseModel, IsPublishedBaseModel, UniqueNameBaseModel):

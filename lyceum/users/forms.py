@@ -1,45 +1,33 @@
 from django import forms
-from django.contrib.auth.admin import User
-from django.contrib.auth.forms import UserChangeForm
-from django.contrib.auth.forms import UserCreationForm as BaseUserCreationForm
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
-from .models import Profile
+from .models import CustomUser
 
 
-class UserCreationForm(BaseUserCreationForm):
+class CustomUserCreationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.visible_fields():
             field.field.widget.attrs['class'] = 'form-control'
 
     class Meta:
-        model = User
-        fields = ('username', 'email', 'password1', 'password2')
+        model = CustomUser
+        fields = ('email', 'password1', 'password2')
 
 
-class UserUpdateForm(UserChangeForm):
+class CustomUserChangeForm(UserChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.visible_fields():
             field.field.widget.attrs['class'] = 'form-control'
-        self.fields.pop('password')
+
+    password = None
 
     class Meta:
-        model = User
-        fields = ('email', 'first_name')
-        exclude = ('username',)
-
-
-class ProfileUpdateForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.visible_fields():
-            field.field.widget.attrs['class'] = 'form-control'
-        self.fields['birthday'].required = False
-
-    class Meta:
-        model = Profile
-        fields = ('birthday',)
+        model = CustomUser
+        fields = ('first_name', 'last_name', 'birthday')
         widgets = {
-            'birthday': forms.DateInput(attrs={'type': 'date'})
+            'birthday': forms.DateInput(attrs={
+                'type': 'date',
+            })
         }

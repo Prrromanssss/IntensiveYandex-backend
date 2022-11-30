@@ -9,7 +9,7 @@ from .models import Feedback
 
 
 def feedback(request):
-    template_name = 'feedback/index.html'
+    template_name = 'feedback/feedback.html'
     form = FeedbackForm(request.POST or None)
     context = {
         'form': form,
@@ -35,10 +35,9 @@ def feedback(request):
             fail_silently=False,
         )
 
-        feedback = Feedback.objects.create(
+        Feedback.objects.create(
             **form.cleaned_data
         )
-        feedback.save()
 
         return redirect('feedback:feedback')
 

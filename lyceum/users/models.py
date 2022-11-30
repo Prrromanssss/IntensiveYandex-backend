@@ -1,21 +1,42 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, User
 from django.db import models
+from django.utils import timezone
+
+from .managers import CustomUserManager
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(
-        User,
-        on_delete=models.CASCADE,
+class CustomUser(AbstractBaseUser, PermissionsMixin):
+    first_name = models.CharField(
+        'имя',
+        max_length=150,
+        blank=True,
     )
-
+    last_name = models.CharField(
+        'фамилия',
+        max_length=150,
+        blank=True,
+    )
+    email = models.EmailField(
+        'почта',
+        unique=True,
+    )
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    date_joined = models.DateTimeField(default=timezone.now)
     birthday = models.DateField(
         'день рождения',
         null=True,
+        blank=True,
     )
 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    objects = CustomUserManager()
+
     class Meta:
-        verbose_name = 'допольнительное поле'
-        verbose_name_plural = 'допольнительные поля'
+        verbose_name = 'пользователь'
+        verbose_name_plural = 'пользователи'
 
     def __str__(self):
-        return 'День рождения'
+        return self.email
