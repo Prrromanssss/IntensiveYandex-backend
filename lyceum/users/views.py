@@ -9,7 +9,7 @@ from .models import CustomUser
 @login_required
 def profile(request):
     template_name = 'users/profile.html'
-    form = CustomUserChangeForm(request.POST, instance=request.user)
+    form = CustomUserChangeForm(request.POST or None, instance=request.user)
     context = {
         'form': form,
     }
