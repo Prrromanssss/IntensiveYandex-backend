@@ -1,6 +1,7 @@
-from django.contrib.auth.admin import User
 from django.test import Client, TestCase
 from django.urls import reverse
+
+from ..models import CustomUser
 
 
 class StaticUrlTests(TestCase):
@@ -47,8 +48,8 @@ class DynamicUrlTests(TestCase):
     def setUpClass(cls):
         super().setUpClass()
         for i in range(101):
-            cls.user = User.objects.create(
-                username=f'Тестовый юзер {i}',
+            cls.user = CustomUser.objects.create(
+                email=f'user{i}@mail.ru',
                 password='bhunji78*',
             )
 
