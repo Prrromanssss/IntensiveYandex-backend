@@ -6,22 +6,24 @@
 
 {% block content %}
 <h1 class="text-center"> Форма обратной связи </h1>
-    <form method="post" >
-        {% csrf_token %}
-        {% for field in form %}
-            <div class="form-group col-sm-5 mx-sm-3 mb-2">                            
-                {{ field.label_tag }}
-                {{ field }}
-                {% if field.help_text %}
-                    <small class="form-text text-muted">{{ field.help_text }}</small>
-                {% endif %}
-                {% if field.errors %}
-                    <div class="alert alert-danger">
-                        {{ field.errors }}
-                    </div>
-                {% endif %}
-            </div>
-        {% endfor %}
-        <button type="submit" class="btn btn-primary mx-sm-3">Отправить</button>
-    </form>
+<form method="post" >
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="form-group col-sm-5 mx-auto mb-2">                            
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+            {% if field.errors %}
+                <div class="alert alert-danger">
+                    {{ field.errors }}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <div class="col text-center">
+        <button type="submit" class="btn btn-dark mx-sm-3">Отправить</button>
+    </div>
+</form>
 {% endblock %} 

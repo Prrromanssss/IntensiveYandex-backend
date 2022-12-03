@@ -1,0 +1,25 @@
+users_customuser
+-
+ID integer pk
+password varchar(128)
+last_login datetime
+is_superuser bool
+email varchar(254)
+is_staff bool
+is_active bool
+date_joined datetime
+first_name varchar(150)
+birthday date
+last_name varchar(150)
+
+users_customuser_groups
+-
+ID integer pk
+customuser_id bigint FK >- users_customuser.ID
+group_id integer
+
+users_customuser_user_permission
+-
+ID integer pk
+customuser_id bigint FK >- users_customuser.ID
+permission_id integer

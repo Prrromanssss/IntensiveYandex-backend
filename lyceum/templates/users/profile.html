@@ -6,11 +6,47 @@
 
 {% block content %}
     <h1 class="text-center">Профиль</h1>
-    
-    <p class="mx-sm-2 lead mb-4">Почта: {{ user.email }}</p>
-    <p class="mx-sm-2 lead mb-4">Имя: {{ user.first_name }}</p>
-    <p class="mx-sm-2 lead mb-4">Фамилия: {{ user.last_name }}</p>
-    <p class="mx-sm-2 lead mb-4">День рождения: {{ user.birthday }}</p>
-    {% include 'users/includes/form.html' %}
-    <a href="{% url 'users:password_change' %}" class="btn btn-primary mx-sm-3">Изменить пароль</a> 
+    {% include 'users/includes/user_card.html'%}
+    {% comment %} {% include 'users/includes/form.html' %} {% endcomment %}
+    <div class="container mx-sm-4 mb-3 mt-3">
+    <a href="{% url 'users:password_change' %}" class="btn btn-dark mx-sm-3">Изменить пароль</a>
+    <button
+      type="button"
+      class="btn btn-dark"
+      data-bs-toggle="modal"
+      data-bs-target="#modal-cart"
+    >
+      Редактировать профиль
+    </button>
+    <div
+      class="modal fade"
+      id="modal-cart"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header bg-dark text-white">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Редактирование профиля
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            {% include 'users/includes/form.html' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
 {% endblock %}

@@ -10,11 +10,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         'имя',
         max_length=150,
         blank=True,
+        null=True,
     )
     last_name = models.CharField(
         'фамилия',
         max_length=150,
         blank=True,
+        null=True,
     )
     email = models.EmailField(
         'почта',

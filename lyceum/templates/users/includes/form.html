@@ -6,7 +6,7 @@
             {% csrf_token %}
 
             {% for field in form %}
-                <div class="form-group col-sm-5  mx-auto mb-2">                            
+                <div class="form-group col-sm-5 mx-auto mb-2">                            
                     {{ field.label_tag }}
                     {{ field|add_class:"form-control" }}
                     {% if field.help_text %}
@@ -30,19 +30,19 @@
                                 Забыли пароль?
                             </a>
                         </p>
-                        <button type="submit" class="btn btn-primary mx-sm-3 w-25">
+                        <button type="submit" class="btn btn-dark mx-sm-3 w-25">
                             Войти
                         </button>
                     {% elif view_name == 'users:password_change' or view_name == 'users:profile' %}
-                        <button type="submit" class="btn btn-primary mx-sm-3 w-25 ">
+                        <button type="submit" class="btn btn-dark mx-sm-3 w-25 ">
                             Обновить
                         </button>
                     {% elif view_name == 'users:password_reset' or view_name == 'users:password_reset_confirm' %}
-                        <button type="submit" class="btn btn-primary mx-sm-3 ">
+                        <button type="submit" class="btn btn-dark mx-sm-3 ">
                             Восстановить пароль
                         </button>
                     {% elif view_name == 'users:sign_up'%}
-                        <button type="submit" class="btn btn-primary mx-sm-3 ">
+                        <button type="submit" class="btn btn-dark mx-sm-3 ">
                             Зарегистрироваться
                         </button>
                     {% endif %}

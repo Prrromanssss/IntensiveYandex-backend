@@ -4,13 +4,21 @@
     <div class="card-body">
       
       {% with request.resolver_match.view_name as view_name %}
-          {% if view_name == 'users:user_detail' %}
-              <p>Имя: {{ user.first_name }}</p>
-              <p>Фамилия: {{ user.last_name }}</p>
-              <p>День рождения: {{ user.profile.birthday }}</p>
-              <p>
-                  <a href="{% url 'users:user_list' %}">Обратно к списку пользователей</a>
-              </p>
+          {% if view_name == 'users:user_detail' or view_name == 'users:profile' %}
+              {% if user.first_name %}
+                  <p>Имя: {{ user.first_name }}</p>
+              {% endif %}
+              {% if user.last_name %}
+                  <p>Фамилия: {{ user.last_name }}</p>
+              {% endif %}
+              {% if user.birthday %}
+                  <p>День рождения: {{ user.birthday }}</p>
+              {% endif %}
+              {% if view_name == 'users:user_detail '%}
+                  <p>
+                      <a href="{% url 'users:user_list' %}">Обратно к списку пользователей</a>
+                  </p>
+              {% endif %}
           {% else %}
               <p>
                 <a href="{% url 'users:user_detail' user.pk %}">Перейти к пользователю</a>

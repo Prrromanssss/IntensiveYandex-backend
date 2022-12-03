@@ -10,11 +10,18 @@ from .models import CustomUser
 def profile(request):
     template_name = 'users/profile.html'
     form = CustomUserChangeForm(request.POST or None, instance=request.user)
+    user = get_object_or_404(
+        CustomUser,
+        id=request.user.id,
+    )
     context = {
         'form': form,
+        'user': user,
     }
     if request.method == 'POST' and form.is_valid():
-        form.save()
+        CustomUser.objects.filter(id=request.user.id).update(
+            **form.cleaned_data,
+        )
         return redirect('users:profile')
 
     return render(request, template_name, context)
