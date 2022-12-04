@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.views.generic import TemplateView
 
 
-def description(request):
+class DescriptionView(TemplateView):
     template_name = 'about/about.html'
-    return render(request, template_name)
+
+    # def get_queryset(self):
+    #     return

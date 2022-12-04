@@ -8,7 +8,7 @@ from django.contrib.auth.views import (LoginView, LogoutView,
                                        PasswordResetView)
 from django.urls import path, re_path, reverse_lazy
 
-from . import views as local_views
+from users import views as local_views
 
 app_name = 'users'
 
@@ -76,7 +76,7 @@ urlpatterns = [
     ),
     path(
         'profile/',
-        local_views.profile,
+        local_views.ProfileView.as_view(),
         name='profile'
     ),
     path(
@@ -86,12 +86,12 @@ urlpatterns = [
     ),
     path(
         'user_list/',
-        local_views.user_list,
+        local_views.UsersView.as_view(),
         name='user_list'
     ),
     re_path(
         r'user_detail/(?P<pk>[1-9]\d*)/$',
-        local_views.user_detail,
+        local_views.UserView.as_view(),
         name='user_detail'
     )
 ]
