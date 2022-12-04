@@ -1,30 +1,55 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
+from django.views.generic import DetailView, FormView, ListView
 
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 from .models import CustomUser
 
 
-@login_required
-def profile(request):
+class ProfileView(LoginRequiredMixin, FormView):
     template_name = 'users/profile.html'
-    form = CustomUserChangeForm(request.POST or None, instance=request.user)
-    user = get_object_or_404(
-        CustomUser,
-        id=request.user.id,
-    )
-    context = {
-        'form': form,
-        'user': user,
-    }
-    if request.method == 'POST' and form.is_valid():
-        CustomUser.objects.filter(id=request.user.id).update(
-            **form.cleaned_data,
-        )
-        return redirect('users:profile')
+    model = CustomUser
+    form_class = CustomUserChangeForm
+    success_url = reverse_lazy('users:profile')
+    # fields = "__all__"
 
-    return render(request, template_name, context)
+    def get_queryset(self):
+        return get_object_or_404(
+            CustomUser,
+            id=self.request.user.id,
+        )
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+
+        context['form'] = CustomUserChangeForm
+        context['user'] = self.get_queryset
+
+        return context
+
+    # def get(self, request):
+    #     pass
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+
+        if form.is_valid():
+            form = CustomUserChangeForm(self.request.POST or None,
+                                        instance=self.request.user)
+            CustomUser.objects.filter(id=request.user.id).update(
+                **form.cleaned_data,
+            )
+            form.save()
+            return redirect(self.get_success_url())
+        else:
+            form = CustomUserChangeForm()
+
+    # def class ModelUpdateView(UpdateView):
+    #     model = Model
+    #     template_name = ".html"
 
 
 def sign_up(request):
@@ -44,22 +69,17 @@ def sign_up(request):
     return render(request, template_name, context)
 
 
-def user_list(request):
+class UsersView(ListView):
+    model = CustomUser
     template_name = 'users/user_list.html'
-    users = CustomUser.objects.all()
-    context = {
-        'users': users,
-    }
-    return render(request, template_name, context)
+    context_object_name = 'users'
 
 
-def user_detail(request, pk):
+class UserView(DetailView):
+
+    model = CustomUser
     template_name = 'users/user_detail.html'
-    user = get_object_or_404(
-        CustomUser,
-        pk=pk
-    )
-    context = {
-        'user': user,
-    }
-    return render(request, template_name, context)
+    context_object_name = 'user'
+
+    def get_queryset(self):
+        return CustomUser.objects.filter(pk=self.kwargs['pk'])

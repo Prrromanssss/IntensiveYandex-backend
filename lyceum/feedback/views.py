@@ -1,11 +1,9 @@
-import os
-
 from django.conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 
-from .forms import FeedbackForm
-from .models import Feedback
+from feedback.forms import FeedbackForm
+from feedback.models import Feedback
 
 
 def feedback(request):
