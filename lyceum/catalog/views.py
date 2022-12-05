@@ -24,10 +24,14 @@ class ItemView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+        
         context['grade'] = Rating.objects.filter(
             user_id=self.request.user.id,
             item_id=self.kwargs['pk']
-        )[0]
+        )
+        context['number'] = Rating.objects.filter(
+            item_id=self.kwargs['pk']
+        ).count()
         context['user'] = get_object_or_404(
             CustomUser,
             id=self.request.user.id,
