@@ -30,16 +30,20 @@
                     {% endthumbnail %}
                 {{ item.text|safe}}
                      <div>
+                        <a href="{% url 'catalog:item_list' %}">Обратно к списку товаров</a>
                         {% if number %}
                             <p>Средняя оценка товара: {{ average }}; Количество оценок: {{ number }}</p>
                         {% endif %}
                             {% if grade %}
                             <p>Ваша оценка: {{ grade.first }}</p>
-                               
-                            {% else %}
-
                             {% endif %}
-                        <a href="{% url 'catalog:item_list' %}">Обратно к списку товаров</a>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-dark ">
+                                        Оценить
+                                    </button>
+                                    {{ form.grade }}          
+                                </form>
                      </div>
             {% else %}
                 {{ item.text|safe|truncatewords:10 }}
