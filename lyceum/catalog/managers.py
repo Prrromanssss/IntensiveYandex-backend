@@ -17,7 +17,12 @@ class ItemManager(models.Manager):
                     'tags', queryset=Tag.objects.published()
                 )
             )
-            .only('name', 'text', 'category__name', 'mainimage__image')
+            .only(
+                'name',
+                'text',
+                'category__name',
+                'mainimage__image',
+            )
         )
 
 

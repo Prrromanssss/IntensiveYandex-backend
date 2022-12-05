@@ -25,7 +25,6 @@ class Item(IsPublishedBaseModel):
         'Tag',
         verbose_name='тег',
     )
-
     text = RichTextField(
         'описание',
         help_text='Описание должно содержать слова "роскошно" и "превосходно"',

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from rating.models import Rating
 
 from .models import Category, Gallery, Item, MainImage, Tag
 
@@ -7,6 +8,10 @@ class GalleryInline(admin.TabularInline):
     model = Gallery
     readonly_fields = ('image_tmb',)
     extra = 1
+
+
+class RatingInline(admin.TabularInline):
+    model = Rating
 
 
 class MainImageInline(admin.TabularInline):
@@ -38,10 +43,19 @@ class ItemAdmin(admin.ModelAdmin):
     list_editable = ('is_published', 'is_on_main')
     list_display_links = ('name',)
     filter_horizontal = ('tags',)
-    fields = ('name', 'category', 'tags', 'text', 'is_published', 'is_on_main')
+    fields = (
+        'name',
+        'category',
+        'tags',
+        'text',
+        'is_published',
+        'is_on_main',
+        # 'rating',
+    )
     inlines = [
         MainImageInline,
         GalleryInline,
+        RatingInline,
     ]
 
     def category_name(self, obj):
