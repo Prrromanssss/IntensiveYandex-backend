@@ -1,8 +1,9 @@
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, FormView, ListView
+from django.views.generic import DetailView, FormView, ListView, UpdateView
 
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 from .models import CustomUser
@@ -14,47 +15,44 @@ class ProfileView(LoginRequiredMixin, FormView):
     form_class = CustomUserChangeForm
     success_url = reverse_lazy('users:profile')
 
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
+    def post(self, request):
 
-        context['form'] = CustomUserChangeForm
-        context['user'] = get_object_or_404(
-            CustomUser,
-            id=self.request.user.id,
-        )
-
-        return context
-
-    def post(self, request, *args, **kwargs):
-        form = self.get_form()
+        form = CustomUserChangeForm(self.request.POST or None,
+                                    instance=self.request.user)
 
         if form.is_valid():
-            form = CustomUserChangeForm(self.request.POST or None,
-                                        instance=self.request.user)
             CustomUser.objects.filter(id=request.user.id).update(
                 **form.cleaned_data,
             )
             form.save()
             return redirect(self.get_success_url())
-        else:
-            form = CustomUserChangeForm()
+
+        context = {'form': form, 'user': self.request.user}
+
+        return render(request, self.template_name, context)
 
 
-def sign_up(request):
+class SignUpView(FormView):
     template_name = 'users/sign_up.html'
-    form = CustomUserCreationForm(request.POST or None)
-    context = {
-        'form': form,
-    }
+    model = CustomUser
+    form_class = CustomUserCreationForm
+    success_url = reverse_lazy('users:profile')
 
-    if request.method == 'POST' and form.is_valid():
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['form'] = CustomUserCreationForm
+        return context
 
-        user = form.save()
-        login(request, user)
+    def post(self, request):
+        form = self.get_form()
 
-        return redirect('users:profile')
+        if form.is_valid():
+            form = CustomUserCreationForm(self.request.POST or None)
+            user = form.save()
+            login(request, user)
+            return redirect(self.get_success_url())
 
-    return render(request, template_name, context)
+        return render(request, self.template_name, self.get_context_data())
 
 
 class UsersView(ListView):

@@ -81,7 +81,7 @@ urlpatterns = [
     ),
     path(
         'sign_up/',
-        local_views.sign_up,
+        local_views.SignUpView.as_view(),
         name='sign_up'
     ),
     path(
