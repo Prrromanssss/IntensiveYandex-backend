@@ -2,6 +2,7 @@ from catalog.models import Item
 from django.db.models import Avg
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
+from rating.forms import RatingForm
 from rating.models import Rating
 from users.models import CustomUser
 
@@ -26,6 +27,7 @@ class ItemView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
+        context['form'] = RatingForm(self.request.POST or None)
         context['grade'] = Rating.objects.filter(
             user_id=self.request.user.id,
             item_id=self.kwargs['pk']
