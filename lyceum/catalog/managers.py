@@ -3,7 +3,6 @@ from django.db.models import Prefetch
 
 
 class ItemManager(models.Manager):
-
     def published(self):
         from .models import Tag
         return (

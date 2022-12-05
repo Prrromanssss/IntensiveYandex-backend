@@ -1,5 +1,4 @@
 from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
@@ -14,7 +13,6 @@ class ProfileView(LoginRequiredMixin, FormView):
     model = CustomUser
     form_class = CustomUserChangeForm
     success_url = reverse_lazy('users:profile')
-    # fields = "__all__"
 
     def get_queryset(self):
         return get_object_or_404(
@@ -30,9 +28,6 @@ class ProfileView(LoginRequiredMixin, FormView):
 
         return context
 
-    # def get(self, request):
-    #     pass
-
     def post(self, request, *args, **kwargs):
         form = self.get_form()
 
@@ -46,10 +41,6 @@ class ProfileView(LoginRequiredMixin, FormView):
             return redirect(self.get_success_url())
         else:
             form = CustomUserChangeForm()
-
-    # def class ModelUpdateView(UpdateView):
-    #     model = Model
-    #     template_name = ".html"
 
 
 def sign_up(request):

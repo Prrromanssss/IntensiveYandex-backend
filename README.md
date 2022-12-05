@@ -4,6 +4,8 @@
 ![flake8 test](https://github.com/Prrromanssss/LyceumYandex_django/actions/workflows/python-package.yml/badge.svg)
 
 
+![Image of the index.html](https://github.com/Prrromanssss/LyceumYandex_django/raw/main/media_for_README/index.png)
+
 
 ## Deployment instructions
 
