@@ -30,16 +30,15 @@
                     {% endthumbnail %}
                 {{ item.text|safe}}
                      <div>
-                        <p>Средняя оценка товара: {{ user.is_authenticated }}, Количество оценок: {{ number  }}</p>
-                        {% if user.is_authenticated %}
+                        {% if number %}
+                            <p>Средняя оценка товара: {{ average }}; Количество оценок: {{ number }}</p>
+                        {% endif %}
                             {% if grade %}
                             <p>Ваша оценка: {{ grade.first }}</p>
-
+                               
                             {% else %}
 
                             {% endif %}
-
-                        {% endif %}
                         <a href="{% url 'catalog:item_list' %}">Обратно к списку товаров</a>
                      </div>
             {% else %}
