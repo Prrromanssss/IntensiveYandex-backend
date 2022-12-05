@@ -14,17 +14,14 @@ class ProfileView(LoginRequiredMixin, FormView):
     form_class = CustomUserChangeForm
     success_url = reverse_lazy('users:profile')
 
-    def get_queryset(self):
-        return get_object_or_404(
-            CustomUser,
-            id=self.request.user.id,
-        )
-
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
         context['form'] = CustomUserChangeForm
-        context['user'] = self.get_queryset
+        context['user'] = get_object_or_404(
+            CustomUser,
+            id=self.request.user.id,
+        )
 
         return context
 

@@ -1,5 +1,8 @@
 from catalog.models import Item
+from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
+from rating.models import Rating
+from users.models import CustomUser
 
 
 class ItemsView(ListView):
@@ -18,3 +21,16 @@ class ItemView(DetailView):
 
     def get_queryset(self):
         return Item.objects.published()
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['grade'] = Rating.objects.filter(
+            user_id=self.request.user.id,
+            item_id=self.kwargs['pk']
+        )[0]
+        context['user'] = get_object_or_404(
+            CustomUser,
+            id=self.request.user.id,
+        )
+
+        return context

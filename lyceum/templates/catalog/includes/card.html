@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-3">
   {% with request.resolver_match.view_name as view_name %}
       {% if view_name == 'catalog:item_list' %}
           {% ifchanged %}
@@ -29,8 +29,19 @@
                             alt="Картинка товара">
                     {% endthumbnail %}
                 {{ item.text|safe}}
-                    <br>
-                    <p><a href="{% url 'catalog:item_list' %}">Обратно к списку товаров</a></p>
+                     <div>
+                        <p>Средняя оценка товара: {{ user.is_authenticated }}, Количество оценок: {{ user.is_authenticated  }}</p>
+                        {% if user.is_authenticated %}
+                            {% if grade %}
+                            <p>Ваша оценка: {{ grade }}</p>
+
+                            {% else %}
+
+                            {% endif %}
+
+                        {% endif %}
+                        <a href="{% url 'catalog:item_list' %}">Обратно к списку товаров</a>
+                     </div>
             {% else %}
                 {{ item.text|safe|truncatewords:10 }}
                 <br>
