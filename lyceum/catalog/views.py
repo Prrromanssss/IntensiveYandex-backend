@@ -41,7 +41,7 @@ class ItemView(DetailView):
         if self.request.user.is_authenticated:
             context['user'] = get_object_or_404(
                 CustomUser,
-                id=self.request.user.id,
+                id=self.request.user.id
             )
 
         return context
