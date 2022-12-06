@@ -51,6 +51,3 @@ class UserView(DetailView):
     model = CustomUser
     template_name = 'users/user_detail.html'
     context_object_name = 'user'
-
-    def get_queryset(self):
-        return CustomUser.objects.filter(pk=self.kwargs['pk'])
