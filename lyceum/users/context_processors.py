@@ -9,5 +9,5 @@ def current_birthdays(request):
         .only('first_name', 'email'))
 
     return {
-        'birthdays': birthdays
+        'birthdays': birthdays,
     }
