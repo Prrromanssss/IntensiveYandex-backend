@@ -47,3 +47,24 @@ text text
 created_on datetime
 mail varchar(254)
 name varchar(150)
+
+rating_rating
+-
+ID integer pk
+grade integer
+item_id bigint FK >- catalog_item.ID
+user_id bigint FK >- users_customuser.ID
+
+users_customuser
+-
+ID integer pk
+password varchar(128)
+last_login datetime
+is_superuser bool
+email varchar(254)
+is_staff bool
+is_active bool
+date_joined datetime
+first_name varchar(150)
+birthday date
+last_name varchar(150)
