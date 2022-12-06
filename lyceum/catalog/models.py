@@ -1,10 +1,9 @@
+from catalog.managers import ItemManager, TagManager
+from catalog.validators import validate_amazing
 from ckeditor.fields import RichTextField
 from core.models import (ImageBaseModel, IsPublishedBaseModel, SlugBaseModel,
                          UniqueNameBaseModel)
 from django.db import models
-
-from .managers import ItemManager, TagManager
-from .validators import validate_amazing
 
 
 class Item(IsPublishedBaseModel):

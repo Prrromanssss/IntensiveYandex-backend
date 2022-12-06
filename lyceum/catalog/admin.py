@@ -1,7 +1,6 @@
+from catalog.models import Category, Gallery, Item, MainImage, Tag
 from django.contrib import admin
 from rating.models import Rating
-
-from .models import Category, Gallery, Item, MainImage, Tag
 
 
 class GalleryInline(admin.TabularInline):

@@ -3,9 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, FormView, ListView
-
-from .forms import CustomUserChangeForm, CustomUserCreationForm
-from .models import CustomUser
+from users.forms import CustomUserChangeForm, CustomUserCreationForm
+from users.models import CustomUser
 
 
 class ProfileView(LoginRequiredMixin, FormView):
