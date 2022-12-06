@@ -41,13 +41,13 @@ class SignUpView(FormView):
         return super().form_valid(form)
 
 
-class UsersView(ListView):
+class UserListView(ListView):
     model = CustomUser
     template_name = 'users/user_list.html'
     context_object_name = 'users'
 
 
-class UserView(DetailView):
+class UserDetailView(DetailView):
     model = CustomUser
     template_name = 'users/user_detail.html'
     context_object_name = 'user'

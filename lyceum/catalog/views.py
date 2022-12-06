@@ -7,7 +7,7 @@ from rating.models import Rating
 from users.models import CustomUser
 
 
-class ItemsView(ListView):
+class ItemListView(ListView):
     model = Item
     template_name = 'catalog/item_list.html'
     context_object_name = 'items'
@@ -16,7 +16,7 @@ class ItemsView(ListView):
         return Item.objects.published().order_by('category__name', 'name')
 
 
-class ItemView(DetailView):
+class ItemDetailView(DetailView):
     model = Item
     template_name = 'catalog/view_element.html'
     context_object_name = 'item'
