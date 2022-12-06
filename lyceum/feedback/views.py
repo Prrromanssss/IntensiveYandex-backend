@@ -16,7 +16,6 @@ class FeedbackView(FormView):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST or None)
-
         if form.is_valid():
             name = form.cleaned_data['name']
             text = form.cleaned_data['text']

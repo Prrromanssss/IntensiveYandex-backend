@@ -20,9 +20,7 @@ class ItemDetailView(DetailView):
     model = Item
     template_name = 'catalog/view_element.html'
     context_object_name = 'item'
-
-    def get_queryset(self):
-        return Item.objects.published()
+    get_queryset = Item.objects.published
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
