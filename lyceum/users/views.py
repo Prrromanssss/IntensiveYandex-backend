@@ -14,18 +14,29 @@ class ProfileView(LoginRequiredMixin, FormView):
     form_class = CustomUserChangeForm
     success_url = reverse_lazy('users:profile')
 
-    def post(self, request):
-        form = CustomUserChangeForm(self.request.POST or None,
-                                    instance=self.request.user)
+    def get(self, request):
+        form = self.form_class(
+            initial=self.initial,
+            instance=request.user,
+        )
+        context = {'form': form, 'user': request.user}
+        return render(
+            request,
+            self.template_name,
+            context,
+        )
 
+    def post(self, request):
+        form = self.form_class(
+            request.POST or None,
+            instance=request.user,
+        )
         if form.is_valid():
-            CustomUser.objects.filter(id=request.user.id).update(
+            self.model.objects.filter(id=request.user.id).update(
                 **form.cleaned_data,
             )
-            form.save()
             return redirect(self.get_success_url())
-
-        context = {'form': form, 'user': self.request.user}
+        context = {'form': form, 'user': request.user}
         return render(request, self.template_name, context)
 
 
