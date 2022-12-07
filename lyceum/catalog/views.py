@@ -27,7 +27,7 @@ class ItemDetailView(FormMixin, DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['form'] = self.form_class(self.request.POST or None)
+        context['form'] = self.form_class()
         context['grade'] = self.form_model.objects.filter(
             user_id=self.request.user.id,
             item_id=self.kwargs['pk']
