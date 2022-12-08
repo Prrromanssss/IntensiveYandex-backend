@@ -1,5 +1,5 @@
 from catalog.managers import ItemManager, TagManager
-from catalog.validators import validate_amazing
+from catalog.validators import ValidateAmazing
 from ckeditor.fields import RichTextField
 from core.models import (ImageBaseModel, IsPublishedBaseModel, SlugBaseModel,
                          UniqueNameBaseModel)
@@ -28,7 +28,7 @@ class Item(IsPublishedBaseModel):
         'описание',
         help_text='Описание должно содержать слова "роскошно" и "превосходно"',
         validators=[
-            validate_amazing('превосходно', 'роскошно'),
+            ValidateAmazing('превосходно', 'роскошно'),
         ],
     )
 

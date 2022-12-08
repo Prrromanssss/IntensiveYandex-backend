@@ -22,12 +22,13 @@ class Rating(models.Model):
         CustomUser,
         verbose_name='пользователь',
         on_delete=models.CASCADE,
+        related_name='user_rating',
     )
     item = models.ForeignKey(
         Item,
         verbose_name='товар',
         on_delete=models.CASCADE,
-        related_name='some_item',
+        related_name='item_rating',
     )
 
     class Meta:

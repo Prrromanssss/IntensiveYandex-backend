@@ -28,15 +28,16 @@ class ItemDetailView(FormMixin, DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['form'] = self.form_class(self.request.POST or None)
+
         context['grade'] = self.form_model.objects.filter(
             user_id=self.request.user.id,
-            item_id=self.kwargs['pk']
+            item_id=self.kwargs['pk'],
         )
         context['number'] = self.form_model.objects.filter(
-            item_id=self.kwargs['pk']
+            item_id=self.kwargs['pk'],
         ).count()
         context['average'] = self.form_model.objects.filter(
-            item_id=self.kwargs['pk']
+            item_id=self.kwargs['pk'],
         ).aggregate(
             Avg('grade')
         )['grade__avg']
@@ -52,19 +53,13 @@ class ItemDetailView(FormMixin, DetailView):
         return reverse_lazy('catalog:item_detail')
 
     def post(self, request, *args, **kwargs):
-        form = self.form_class(
-            request.POST or None,
-            instance=request.user,
-        )
+        form = self.form_class(request.POST or None)
         if form.is_valid():
-            if not self.form_model.objects.filter(
-                    user_id=request.user.id,
-                    item_id=self.kwargs['pk']
-            ).update(**form.cleaned_data):
-                self.form_model.objects.create(
-                    **form.cleaned_data,
-                    user_id=request.user.id,
-                    item_id=self.kwargs['pk']
-                )
+            self.form_model.objects.update_or_create(
+                user_id=request.user.id,
+                item_id=self.kwargs['pk'],
+                defaults=form.cleaned_data,
+            )
+
             return redirect(self.get_success_url(**self.kwargs))
         return render(request, self.template_name, self.get_context_data())
