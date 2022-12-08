@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>Вход</title>
+{% endblock %}
+{% block css_links %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+<link
+  href="{% static 'css/user_already_login.css' %}"
+  rel="stylesheet"
+  type="text/css"
+/>
+{% endblock %}
+{% block content %}
+
+<div id="fof">
+  <canvas
+    width="1403"
+    height="712"
+    style="width: 1403px; height: 712px"
+  ></canvas>
+  <h1 class="show">
+    Ты уже вошел в аккаунт. Вернись на
+    <a href="{% url 'homepage:home' %}">главную</a>
+  </h1>
+</div>
+<a href="{% url 'homepage:home' %}" class="btn btn-dark mx-sm-3">На главную</a>
+
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/user_already_exist.js' %}"></script>
+{% endblock %}

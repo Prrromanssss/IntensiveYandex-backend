@@ -1,10 +1,22 @@
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, FormView, ListView
 from users.forms import CustomUserChangeForm, CustomUserCreationForm
 from users.models import CustomUser
+
+
+class CustomLoginView(LoginView):
+    def get(self, request):
+        form = self.get_form()
+        if request.user.is_authenticated:
+            template_name = 'users/user_already_login.html'
+        else:
+            template_name = 'users/login.html'
+        context = {'form': form}
+        return render(request, template_name, context)
 
 
 class ProfileView(LoginRequiredMixin, FormView):
@@ -19,11 +31,7 @@ class ProfileView(LoginRequiredMixin, FormView):
             instance=request.user,
         )
         context = {'form': form, 'user': request.user}
-        return render(
-            request,
-            self.template_name,
-            context,
-        )
+        return render(request, self.template_name, context)
 
     def post(self, request):
         form = self.form_class(
